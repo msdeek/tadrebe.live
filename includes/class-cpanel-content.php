@@ -100,7 +100,9 @@ class CPanel_Content
             #var_dump( $content);
             foreach ((array)$content as $course) {
                 $fullname = $course->displayname;
+                $shortname = $course->shortname;
                 $value = $course->id;
+                $lang = $course->lang;
                 #$posts = $this->query_cpanel_posts($post_type, $key, $value);
                 $course_id = $wpdb->get_var( // @codingStandardsIgnoreLine
                     $wpdb->prepare(
@@ -114,10 +116,20 @@ class CPanel_Content
 
                 if (false == $course_id) {
                     $post_id = wp_insert_post(array(
-                        'post_title' => $fullname,
+                        'post_title' => $shortname,
                         'post_type' =>  $post_type,
                     ));
                     add_post_meta($post_id, $key, $value, true);
+                    add_post_meta($post_id, 'fullname', $fullname, true);
+                    add_post_meta($post_id, 'cplang', $lang, true);
+                }else{
+                   
+                    update_post_meta( $course_id, 'fullname', $fullname);
+                    update_post_meta( $course_id, 'cplang', $lang);
+                    $course_id=  wp_update_post(array(
+                        'ID' => $course_id,
+                        'post_title' => $shortname,
+                    ));
                 }
             }
         }
@@ -278,6 +290,7 @@ class CPanel_Content
             }
         }
     }
-
+   
+   
 
 }

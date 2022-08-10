@@ -116,6 +116,7 @@ class cpanel_Admin {
 		$response = json_encode( $response);
 		echo $response;
 		die();
+		
 	}
 
 /**public function init_cpanel_connecions(){
@@ -161,6 +162,27 @@ class cpanel_Admin {
 		}
 
 		
+	}
+
+	function cpanel_course_id_columns($columns) {
+		$columns['cpanel_course_id'] = 'CPanel ID';
+		$columns['fullname'] = 'CPanel Name';
+		$columns['cplang'] = 'Lang';
+		return $columns;
+	}
+
+	function cpanel_course_id_column( $column, $post_id){
+		switch ($column){
+			case 'cpanel_course_id' :
+				echo get_post_meta($post_id, 'cpanel_course_id', true);
+				break;
+			case 'fullname' :
+				echo get_post_meta($post_id, 'fullname', true);
+				break;
+			case 'cplang':
+				echo get_post_meta($post_id, 'cplang', true);
+				break;
+		}
 	}
 
 }
