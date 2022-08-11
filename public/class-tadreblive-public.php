@@ -102,11 +102,24 @@ class tadreblive_Public
 
 		wp_enqueue_script($this->tadreblive, plugin_dir_url(__FILE__) . 'js/tadreblive-public.js', array('jquery'), $this->version, false);
 		wp_enqueue_script('video-tadreb', '//vjs.zencdn.net/7.10.2/video.min.js', array('jquery'), $this->version, false);
-		wp_enqueue_script('moodle', 'http://localhost:5000/lib/javascript-static.js', array('jquery'), $this->version, false);
 		wp_localize_script($this->tadreblive, 'add_user_to_cpnel', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'ajax_nonce' => wp_create_nonce(action: 'add_user_to_cpnel_nonce'),
 
 		));
+	}
+
+	public function chnag_loacal($post_id){
+		$lang = get_post_meta($post_id, 'cplang', true);
+
+		switch ($lang){
+			case 'ar' :
+				return 'ar_EG';
+				break;
+			case 'en' :
+				return 'en_US';
+				break;
+		}
+
 	}
 }
