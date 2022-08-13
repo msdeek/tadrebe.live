@@ -116,7 +116,7 @@ class cpanel_Admin {
 		#$response = json_encode( $response);
 		#echo $response;
 		#die();
-		return $response;
+	
 		
 	}
 
