@@ -272,4 +272,8 @@
 		#var_dump($users_data);
 		
 	}
+
+	public function cpanel_update_course_access($user_id, $course_id, $course_access_list, $remove){
+		
+	}
  }

@@ -221,6 +221,8 @@ class tadreblive {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		
+		$this->loader->add_filter( 'locale', $plugin_public, 'chnag_loacal' );
 
 
 		$plugin_cpanel_user = new CPanelUsers( $this->get_tadreblive(), $this->get_version() );
