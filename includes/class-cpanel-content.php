@@ -253,36 +253,7 @@ class CPanel_Content
                                     'post_title' => $module_fullname,
                                     'post_status' =>  $post_status,
                                 ));
-                                /**if ('bigbluebuttonbn' == $modname) {
-                                    
-                                    $bigbluebuttonbnid = get_post_meta($topic_id, 'module_instance', true);
-                                    
-                                    $method = 'GET';
-                                    $body = array(
-                                        'wstoken' => $token,
-                                        'wsfunction' => 'mod_bigbluebuttonbn_meeting_info',
-                                        'moodlewsrestformat' => 'json',
-                                        'bigbluebuttonbnid' => $bigbluebuttonbnid,
-                                    );
-                                    $content = new CPanel_Services; 
-                                    $content = $content->register_moodle_services($baseurl, $method, $body);
-                                    $meetingid = $content->meetingid;
-                                        echo $meetingid;
-                                    
-                                    
-                                    
-                                    
-                                    add_post_meta($topic_id, 'meetingid', $meetingid, true);
-
-                                    
-                                    
-                                    
-                                    $my_post = array(
-                                        'ID' => $module_id,
-                                        'post_content' => '<h1>'. $meetingid .'</h1>',
-                                    );
-                                    wp_update_post($my_post);
-                                }*/
+                             
                            
                         }
                     }
@@ -291,6 +262,88 @@ class CPanel_Content
         }
     }
    
+
+    public function bigbluebuttonbn($baseurl, $token){
+    $post_type = $this->learndash_post_type('topic');
+    $post_type = $post_type['post_type'];
+    $topics = get_posts([
+        'post_type' => $post_type
+    ]);
+    
+
+    foreach ( (array) $topics as $topic){
+        $topic_id = $topic->ID;
+        
+        $modname = get_post_meta($topic_id, 'modname', true);
+
+        $cmid = get_post_meta($topic_id, 'cpanel_module_id', true);
+        
+            if ('bigbluebuttonbn' == $modname) {
+                                        
+                $bigbluebuttonbnid = get_post_meta($topic_id, 'module_instance', true);
+                
+                $method = 'GET';
+                $body = array(
+                    'wstoken' => $token,
+                    'wsfunction' => 'mod_bigbluebuttonbn_meeting_info',
+                    'moodlewsrestformat' => 'json',
+                    'bigbluebuttonbnid' => $bigbluebuttonbnid,
+                );
+                $content = new CPanel_Services; 
+                $meeting_content = $content->register_moodle_services($baseurl, $method, $body);
+               
+                $meetingid = $meeting_content->meetingid;
+                    #echo $meetingid;
+                
+                
+                
+                
+                add_post_meta($topic_id, 'meetingid', $meetingid, true);
+
+
+                $meetingbody = array(
+                    'wstoken' => $token,
+                    'wsfunction' => 'mod_bigbluebuttonbn_get_join_url',
+                    'moodlewsrestformat' => 'json',
+                    'cmid' => $cmid,
+                );
+                
+                $meeting_url = $content->register_moodle_services($baseurl, $method, $meetingbody);
+                $meeting_url = $meeting_url->join_url;
+                $meeting_url = "'".$meeting_url."'";
+                $content = '<input type="button" value="Home" class="homebutton" id="joinsession" onClick="document.location.href='.$meeting_url.'" />';
+                $my_post = array(
+                    'ID'           => $topic_id,
+                    
+                    'post_content' => $content ,
+                );
+                wp_update_post($my_post);
+                $service_url = 'https://lv1.tadreb.live/bigbluebutton/api/';
+                $callName = 'getRecordings';
+                $queryString = array(
+                    'meetingID' => $meetingid,
+                );
+                $parm = 'meetingID=' . urlencode($meetingid);
+                $sharedSecret = '06lksGdXVgfGf7hIEso7E4DwHZIPUjwCz41nDvkCI';
+                $chuksum = sha1($callName  . $parm . $sharedSecret);
+                $arguments = array(
+                    'method' => 'GET',
+                    
+                );
+                $url = $service_url.$callName .'?' . $parm . '&checksum=' .  $chuksum;
+                $record_data= wp_remote_get($url, $arguments);
+                $record_data = json_encode( wp_remote_retrieve_body($record_data));
+                $data = json_decode($record_data, TRUE);
+               
+                $xml = simplexml_load_string($data);
+
+                $recordings = 'recordID';
+               
+               
+            }
+    }
+    }   
+}
    
 
-}
+

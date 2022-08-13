@@ -204,6 +204,7 @@ class tadreblive {
 
 		$this->loader->add_action( 'wp_ajax_get_moodle_courses',$plugin_cpanel_admin,   'get_moodle_courses' ) ;
 		$this->loader->add_action( 'wp_ajax_nopriv_get_moodle_courses',$plugin_cpanel_admin,   'get_moodle_courses' ) ;
+	
 
 		
 	}
@@ -221,15 +222,20 @@ class tadreblive {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		
-		$this->loader->add_filter( 'locale', $plugin_public, 'chnag_loacal' );
-
+		#$this->loader->add_action( 'init', $plugin_public,   'get_bigbluebuttonbn' ) ;
 
 		$plugin_cpanel_user = new CPanelUsers( $this->get_tadreblive(), $this->get_version() );
 		
 		#$this->loader->add_action('init', $plugin_cpanel_user, 'add_user_to_cpnel');
 		$this->loader->add_action( 'wp_ajax_add_user_to_cpnel',$plugin_cpanel_user,   'add_user_to_cpnel' ) ;
 		$this->loader->add_action( 'wp_ajax_nopriv_add_user_to_cpnel',$plugin_cpanel_user,   'add_user_to_cpnel' ) ;
+		#$this->loader->add_action( 'init',$plugin_cpanel_user,   'enroll_user_to_cpanel' ) ;
+
+		$this->loader->add_action( 'wp_ajax_enroll_user_to_cpanel',$plugin_cpanel_user,   'enroll_user_to_cpanel' ) ;
+		$this->loader->add_action( 'wp_ajax_nopriv_enroll_user_to_cpanel',$plugin_cpanel_user,   'enroll_user_to_cpanel' ) ;
+
+		
+		
 
 		$plugin_manage_users = new tadreb_action_functions($this->get_tadreblive(), $this->get_version());
 		$this->loader->add_action('user_register', $plugin_manage_users, 'save_pw_to_meta_data');

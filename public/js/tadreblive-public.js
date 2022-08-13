@@ -39,5 +39,14 @@
 			action: "add_user_to_cpnel",
 		  },
 		});
+
+		$.ajax({
+			method: "post",
+			url: enroll_user_to_cpanel.ajaxurl,
+			dataType: "json",
+			data: {
+			  action: "enroll_user_to_cpanel",
+			},
+		  });
 	  });
 })( jQuery );

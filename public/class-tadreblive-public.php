@@ -107,6 +107,12 @@ class tadreblive_Public
 			'ajax_nonce' => wp_create_nonce(action: 'add_user_to_cpnel_nonce'),
 
 		));
+
+		wp_localize_script($this->tadreblive, 'enroll_user_to_cpanel', array(
+			'ajaxurl' => admin_url('admin-ajax.php'),
+			'ajax_nonce' => wp_create_nonce(action: 'enroll_user_to_cpanel_nonce'),
+
+		));
 	}
 
 	public function chnag_loacal($post_id){
@@ -121,5 +127,18 @@ class tadreblive_Public
 				break;
 		}
 
+	}
+
+	public function get_bigbluebuttonbn(){
+		$baseurl = get_option('cpurl');
+		if ( is_user_logged_in() ) {
+			$pcurrent_user = wp_get_current_user();
+			$user_id = $pcurrent_user->ID;
+			$token =  get_user_meta($user_id,  'cp_token', true);
+			$content = new CPanel_Content;
+			$content = $content->bigbluebuttonbn($baseurl, $token);
+			return $content;
+		}
+		
 	}
 }
