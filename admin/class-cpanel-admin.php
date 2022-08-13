@@ -113,9 +113,10 @@ class cpanel_Admin {
 		$response['lessons'] = $content->get_cpanel_items($baseurl, $token);
 		#$users = new CPanelUsers;
 		#$users_data = $users->core_user_create_users();
-		$response = json_encode( $response);
-		echo $response;
-		die();
+		#$response = json_encode( $response);
+		#echo $response;
+		#die();
+		return $response;
 		
 	}
 
