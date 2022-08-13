@@ -72,7 +72,7 @@
       },
     });
   });
-
+/**
   $(function () {
     console.log("");
 
@@ -85,7 +85,7 @@
       },
     });
   });
-
+*/
   $(document).ready(function () {
     $(document)
       .find("#test_connection_button")
