@@ -196,14 +196,14 @@ class tadreblive {
 		$this->loader->add_filter('manage_edit-sfwd-courses_columns', $plugin_cpanel_admin,'cpanel_course_id_columns');
 		$this->loader->add_action('manage_sfwd-courses_posts_custom_column', $plugin_cpanel_admin,'cpanel_course_id_column', 10, 2);
 
-		#$this->loader->add_action('init', $plugin_cpanel_admin, 'get_moodle_courses');
+		$this->loader->add_action('init', $plugin_cpanel_admin, 'get_moodle_courses');
 		$this->loader->add_action( 'wp_ajax_init_cpanel_connecions',$plugin_cpanel_admin,   'init_cpanel_connecions' ) ;
 		$this->loader->add_action( 'wp_ajax_nopriv_init_cpanel_connecions',$plugin_cpanel_admin,   'init_cpanel_connecions' ) ;
 		$this->loader->add_action( 'wp_ajax_update_cptoken',$plugin_cpanel_admin,   'update_cptoken' ) ;
 		$this->loader->add_action( 'wp_ajax_nopriv_update_cptoken',$plugin_cpanel_admin,   'update_cptoken' ) ;
 
-		$this->loader->add_action( 'wp_ajax_get_moodle_courses',$plugin_cpanel_admin,   'get_moodle_courses' ) ;
-		$this->loader->add_action( 'wp_ajax_nopriv_get_moodle_courses',$plugin_cpanel_admin,   'get_moodle_courses' ) ;
+		#$this->loader->add_action( 'wp_ajax_get_moodle_courses',$plugin_cpanel_admin,   'get_moodle_courses' ) ;
+		#$this->loader->add_action( 'wp_ajax_nopriv_get_moodle_courses',$plugin_cpanel_admin,   'get_moodle_courses' ) ;
 	
 
 		
