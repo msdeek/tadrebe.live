@@ -142,12 +142,15 @@ class CPanel_Content
         $post_type = $this->learndash_post_type('course');
         $key = $post_type['key'];
         $post_type = $post_type['post_type'];
-        $courses = get_posts([
-            'post_type' => $post_type
-        ]);
+        $courses = get_posts(array(
+            'fields'          => 'ids',
+            'numberposts' => -1,
+            'post_type' => $post_type,
+            'post_status' => 'publish'
+        ));
         if (0 != $token) {
             foreach ((array)$courses as $course) {
-                $course = $course->ID;
+                #$course = $course->ID;
                 $moodle_course_id = get_post_meta($course, $key, true);
                 $method = 'GET';
                 $body = array(
@@ -266,13 +269,16 @@ class CPanel_Content
     public function bigbluebuttonbn($baseurl, $token){
     $post_type = $this->learndash_post_type('topic');
     $post_type = $post_type['post_type'];
-    $topics = get_posts([
-        'post_type' => $post_type
-    ]);
+    $topics = get_posts(array(
+        'fields'          => 'ids',
+        'numberposts' => -1,
+        'post_type' => $post_type,
+        'post_status' => 'publish'
+    ));
     
 
     foreach ( (array) $topics as $topic){
-        $topic_id = $topic->ID;
+        $topic_id = $topic;
         
         $modname = get_post_meta($topic_id, 'modname', true);
 
