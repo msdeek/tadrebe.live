@@ -274,13 +274,16 @@ class CPanel_Content
     public function bigbluebuttonbn($baseurl, $token){
     $post_type = $this->learndash_post_type('topic');
     $post_type = $post_type['post_type'];
-    $topics = get_posts([
-        'post_type' => $post_type
-    ]);
+    $topics = get_posts(array(
+        'fields'          => 'ids',
+        'numberposts' => -1,
+        'post_type' => $post_type,
+        'post_status' => 'publish'
+    ));
     
 
     foreach ( (array) $topics as $topic){
-        $topic_id = $topic->ID;
+        $topic_id = $topic;
         
         $modname = get_post_meta($topic_id, 'modname', true);
 

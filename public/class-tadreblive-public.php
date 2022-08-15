@@ -101,10 +101,15 @@ class tadreblive_Public
 		 */
 
 		wp_enqueue_script($this->tadreblive, plugin_dir_url(__FILE__) . 'js/tadreblive-public.js', array('jquery'), $this->version, false);
-		wp_enqueue_script('video-tadreb', '//vjs.zencdn.net/7.10.2/video.min.js', array('jquery'), $this->version, false);
+		wp_enqueue_script('video-tadreb', 'https://vjs.zencdn.net/7.10.2/video.min.js', array('jquery'), $this->version, false);
 		wp_localize_script($this->tadreblive, 'add_user_to_cpnel', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'ajax_nonce' => wp_create_nonce(action: 'add_user_to_cpnel_nonce'),
+
+		));
+		wp_localize_script($this->tadreblive, 'enroll_user_to_cpanel', array(
+			'ajaxurl' => admin_url('admin-ajax.php'),
+			'ajax_nonce' => wp_create_nonce(action: 'enroll_user_to_cpanel_nonce'),
 
 		));
 	}
@@ -122,4 +127,18 @@ class tadreblive_Public
 		}
 
 	}
+
+	public function get_bigbluebuttonbn(){
+		$baseurl = get_option('cpurl');
+		if ( is_user_logged_in() ) {
+			$pcurrent_user = wp_get_current_user();
+			$user_id = $pcurrent_user->ID;
+			$token =  get_user_meta($user_id,  'cp_token', true);
+			$content = new CPanel_Content;
+			$content = $content->bigbluebuttonbn($baseurl, $token);
+			return $content;
+		}
+
+	}
+
 }
