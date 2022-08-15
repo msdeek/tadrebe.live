@@ -109,20 +109,15 @@ class cpanel_Admin {
 		$token =  get_option( 'cptoken');
 		#var_dump($token);
 		$content = new CPanel_Content;
-		#$response['courses'] = $content->get_cpanel_courses($baseurl, $token);
-		#$response['lessons'] = $content->get_cpanel_items($baseurl, $token);
-		$courses = $content->get_cpanel_courses($baseurl, $token);
-		$lessons = $content->get_cpanel_items($baseurl, $token);
+		$response['courses'] = $content->get_cpanel_courses($baseurl, $token);
+		$response['lessons'] = $content->get_cpanel_items($baseurl, $token);
 		#$users = new CPanelUsers;
 		#$users_data = $users->core_user_create_users();
-		#$response = json_encode( $response);
-		#echo $response;
-		#die();
-	
+		$response = json_encode( $response);
+		echo $response;
+		die();
 		
 	}
-
-
 
 /**public function init_cpanel_connecions(){
 

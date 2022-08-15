@@ -150,7 +150,8 @@ class CPanel_Content
         ));
         if (0 != $token) {
             foreach ((array)$courses as $course) {
-                #$course = $course->ID;
+                $get_course = get_post( $course );
+                $post_author = $get_course->post_author;
                 $moodle_course_id = get_post_meta($course, $key, true);
                 $method = 'GET';
                 $body = array(
@@ -190,6 +191,7 @@ class CPanel_Content
                         $lesson_id = wp_insert_post(array(
                             'post_title' => $lesson_fullname,
                             'post_type' =>  $lesson_post_type,
+                            'post_author'=> $post_author,
                         ));
                         add_post_meta($lesson_id, $lesson_key, $lesson_value, true);
                         learndash_update_setting($lesson_id, 'course', $course, true);
@@ -198,7 +200,8 @@ class CPanel_Content
                             'ID' => $lesson_id,
                             'post_title' => $lesson_fullname,
                             'post_status' =>  $post_status,
-                            'menu_order' => $lesson_section
+                            'menu_order' => $lesson_section,
+                            'post_author'=> $post_author,
                         ));
                     }
                 
@@ -242,6 +245,7 @@ class CPanel_Content
                             $topic_id = wp_insert_post(array(
                                 'post_title' => $module_fullname,
                                 'post_type' =>  $module_post_type,
+                                'post_author'=> $post_author,
                             ));
                             add_post_meta($topic_id, $module_key, $module_value, true);
                             learndash_update_setting($topic_id, 'course', $course, true);
@@ -255,6 +259,7 @@ class CPanel_Content
                                     'ID' => $module_id,
                                     'post_title' => $module_fullname,
                                     'post_status' =>  $post_status,
+                                    'post_author'=> $post_author,
                                 ));
                              
                            
@@ -269,16 +274,13 @@ class CPanel_Content
     public function bigbluebuttonbn($baseurl, $token){
     $post_type = $this->learndash_post_type('topic');
     $post_type = $post_type['post_type'];
-    $topics = get_posts(array(
-        'fields'          => 'ids',
-        'numberposts' => -1,
-        'post_type' => $post_type,
-        'post_status' => 'publish'
-    ));
+    $topics = get_posts([
+        'post_type' => $post_type
+    ]);
     
 
     foreach ( (array) $topics as $topic){
-        $topic_id = $topic;
+        $topic_id = $topic->ID;
         
         $modname = get_post_meta($topic_id, 'modname', true);
 

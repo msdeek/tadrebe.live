@@ -272,85 +272,8 @@
 		#var_dump($users_data);
 		
 	}
-	public function enroll_user_to_cpanel(){
-		
-		global $wpdb;
-		$baseurl = get_option('cpurl');
-		$token =  get_option( 'cptoken');
-		$user_data = $this->get_user_cred();
-		$cp_cr = $this->get_cp_settings();
-		$user_id = $user_data['user_id'];
-		$cp_user_id = get_user_meta( $user_id, 'cp_user_id', true );
-		$mycourses = ld_get_mycourses($user_id);
-		#var_dump($mycourses);
 
-
-		$method = 'POST';
-        if (true == $token) {
-            $body = array(
-                'wstoken' => $token,
-                'wsfunction' => 'core_course_get_courses',
-                'moodlewsrestformat' => 'json'
-            );
-        
-            
-		foreach ((array)$mycourses as $course){
-			$cpanel_course_id = get_post_meta($course, 'cpanel_course_id', true);
-			#echo ($cpanel_course_id);
-
-
-			$body = array(
-                'wstoken' => $token,
-                'wsfunction' => 'enrol_manual_enrol_users',
-                'moodlewsrestformat' => 'json',
-				'enrolments[0][roleid]' => '5',
-				'enrolments[0][userid]' => $cp_user_id,
-				'enrolments[0][courseid]' => $cpanel_course_id,
-				'enrolments[0][suspend]' => '0'
-            );
-			$content = new CPanel_Services;
-			$content = $content->register_moodle_services($baseurl, $method, $body);
-			add_user_meta( $user_id, 'cp_course', $cpanel_course_id , true ) ;
-
-		
-		}
-		$course_method = 'GET';
-		if (true == $token) {
-		$course_body = array(
-			'wstoken' => $token,
-			'wsfunction' => 'core_enrol_get_users_courses',
-			'moodlewsrestformat' => 'json',
-			'userid' => $cp_user_id
-		);
-		$user_courses = new CPanel_Services;
-		$user_courses = $user_courses->register_moodle_services($baseurl, $course_method, $course_body);
-		foreach ((array)$user_courses as $cp_user_course){
-			$user_course_id = $cp_user_course->id;
-			$course_id = $wpdb->get_var( // @codingStandardsIgnoreLine
-				$wpdb->prepare(
-					"SELECT post_id
-				FROM {$wpdb->prefix}postmeta
-				WHERE meta_key = 'cpanel_course_id'
-				AND meta_value = %s",
-					$user_course_id
-				)
-			);
-			if(!in_array($course_id, $mycourses)){
-				$body = array(
-					'wstoken' => $token,
-					'wsfunction' => 'enrol_manual_enrol_users',
-					'moodlewsrestformat' => 'json',
-					'enrolments[0][roleid]' => '5',
-					'enrolments[0][userid]' => $cp_user_id,
-					'enrolments[0][courseid]' => $user_course_id,
-					'enrolments[0][suspend]' => '1'
-				);
-				$content = new CPanel_Services;
-				$content = $content->register_moodle_services($baseurl, $method, $body);
-			}
-		}
-		}
+	public function cpanel_update_course_access($user_id, $course_id, $course_access_list, $remove){
 		
 	}
-}
  }

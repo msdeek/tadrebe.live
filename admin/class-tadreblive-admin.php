@@ -108,11 +108,11 @@ class tadreblive_Admin {
 				'ajax_nonce' => wp_create_nonce( action:'update_cptoken_nonce' ),
 	
 		));
-		/**wp_localize_script( $this->tadreblive, 'get_moodle_courses', array( 
+		wp_localize_script( $this->tadreblive, 'get_moodle_courses', array( 
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'ajax_nonce' => wp_create_nonce( action:'get_moodle_courses_nonce' ),
 
-	));*/
+	));
 		
 	}
 
