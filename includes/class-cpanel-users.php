@@ -273,6 +273,7 @@
 		
 	}
 	public function enroll_user_to_cpanel(){
+	
 
 		global $wpdb;
 		$baseurl = get_option('cpurl');
@@ -350,7 +351,6 @@
 			}
 		}
 		}
-	public function cpanel_update_course_access($user_id, $course_id, $course_access_list, $remove){
-		
 	}
- }
+}
+}
