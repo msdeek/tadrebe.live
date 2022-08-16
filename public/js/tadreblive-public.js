@@ -106,7 +106,7 @@
 		myvideo.addEventListener( 'pause', () => {
 			myaudio.pause();
 		});
-		myvideo.addEventListener( 'timeupdate', () => {
+		myvideo.addEventListener( 'seeking', () => {
 			myaudio.currentTime = myvideo.currentTime;
 		});
 
