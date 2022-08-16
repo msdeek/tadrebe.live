@@ -95,27 +95,55 @@
 		var os = getOS();
 		var myvideo = document.getElementById("va");
 		var myaudio = document.getElementById("vb");
-		myvideo.onplay  = function() { myaudio.play();  }
-			myvideo.onpause = function() { myaudio.pause(); }
-			var vcurrentTime = myvideo.currentTime ;
-			myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime}
-		/*
-			if(os !== 'iOS') {
+		var change_time_state = true;
+		myaudio.preload = 'auto';
+
+	
+		myvideo.addEventListener( 'play', () => {
+			myaudio.play();
+		});
+
+		myvideo.addEventListener( 'pause', () => {
+			myaudio.pause();
+		});
+		myvideo.addEventListener( 'timeupdate', () => {
+			myaudio.currentTime = myvideo.currentTime;
+		});
+
+
+		/*myvideo.onplay  = function() { 
+			myaudio.play();  
+			if(change_time_state){
+				myaudio.currentTime = myvideo.currentTime;
+				change_time_state = false;
+			}
+		}
+		myvideo.onpause = function() { myaudio.pause();
+			myaudio.pause();
+        	change_time_state = true; 
+		}
+		myvideo.ontimeupdate = function() { 
+			myaudio.currentTime = myvideo.currentTime - 2 ;
+			change_time_state = false;
+		}*/
+
+
+		//myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime}
+		//var vcurrentTime = myvideo.currentTime + seconds ;
+		/*if(os !== 'iOS') {
 			
-			myvideo.onplay  = function() { myaudio.play();  }
-			myvideo.onpause = function() { myaudio.pause(); }
-			var vcurrentTime = myvideo.currentTime ;
+			
 			myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime}
 		} else {
 			myvideo.autoplay = true;
-			myvideo.addEventListener('play', (event) => {
+			myvideo.onplay = (event) => {
 				myaudio.play();
-			})
-			myvideo.addEventListener('pause'), (event) => {
-				myaudio.pause();
 			}
-			
-		}*/
+			myvideo.onpause = (event) => {
+				myaudio.puse();
+			}
+
+		}**/
 			
 	  });
 })( jQuery );
