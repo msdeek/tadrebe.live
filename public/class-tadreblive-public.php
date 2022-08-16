@@ -76,7 +76,7 @@ class tadreblive_Public
 		 */
 
 		wp_enqueue_style($this->tadreblive, plugin_dir_url(__FILE__) . 'css/tadreblive-public.css', array(), $this->version, 'all');
-		wp_enqueue_style($this->tadreblive, '//vjs.zencdn.net/7.10.2/video-js.min.css', array(), $this->version, 'all');
+		wp_enqueue_style('video-tadreb', 'https://vjs.zencdn.net/7.20.2/video-js.css', array(), $this->version, 'all');
 	
 	}
 
@@ -101,7 +101,7 @@ class tadreblive_Public
 		 */
 
 		wp_enqueue_script($this->tadreblive, plugin_dir_url(__FILE__) . 'js/tadreblive-public.js', array('jquery'), $this->version, false);
-		wp_enqueue_script('video-tadreb', 'https://vjs.zencdn.net/7.10.2/video.min.js', array('jquery'), $this->version, false);
+		wp_enqueue_script('video-tadreb', 'https://vjs.zencdn.net/7.20.2/video.min.js', array('jquery'), $this->version, false);
 		wp_localize_script($this->tadreblive, 'add_user_to_cpnel', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'ajax_nonce' => wp_create_nonce(action: 'add_user_to_cpnel_nonce'),

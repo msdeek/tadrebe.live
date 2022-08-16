@@ -48,12 +48,68 @@
 			},
 		  });
 	  });
+	  function getMobileOperatingSystem() {
+		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+	
+		// Windows Phone must come first because its UA also contains "Android"
+		if (/windows phone/i.test(userAgent)) {
+			return "Windows Phone";
+		}
+	
+		if (/android/i.test(userAgent)) {
+			return "Android";
+		}
+	
+		// iOS detection from: http://stackoverflow.com/a/9039885/177710
+		if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+			return "iOS";
+		}
+	
+		return "unknown";
+	} 
 	  $(document).ready(function () {
 		$(document)
-	var myvideo = document.getElementById("va");
-	var myaudio = document.getElementById("vb");
-	myvideo.onplay  = function() { myaudio.play();  }
-	myvideo.onpause = function() { myaudio.pause(); }
-	myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime }
+		function getOS() {
+			var userAgent = window.navigator.userAgent,
+				platform = window.navigator?.userAgentData?.platform || window.navigator.platform,
+				macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+				windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+				iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+				os = null;
+		  
+			if (macosPlatforms.indexOf(platform) !== -1) {
+			  os = 'Mac OS';
+			} else if (iosPlatforms.indexOf(platform) !== -1) {
+			  os = 'iOS';
+			} else if (windowsPlatforms.indexOf(platform) !== -1) {
+			  os = 'Windows';
+			} else if (/Android/.test(userAgent)) {
+			  os = 'Android';
+			} else if (/Linux/.test(platform)) {
+			  os = 'Linux';
+			}
+		  
+			return os;
+		  }
+		
+		var os = getOS();
+		var myvideo = document.getElementById("va");
+		var myaudio = document.getElementById("vb");
+		if(os !== 'iOS') {
+			
+			myvideo.onplay  = function() { myaudio.play();  }
+			myvideo.onpause = function() { myaudio.pause(); }
+			var vcurrentTime = myvideo.currentTime ;
+			myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime}
+		} else {
+			myvideo.autoplay = true;
+			myvideo.addEventListener('play', (event) => {
+				myaudio.play();
+			})
+			myvideo.addEventListener('pause'), (event) => {
+				myaudio.pause();
+			}
+		}
+			
 	  });
 })( jQuery );
