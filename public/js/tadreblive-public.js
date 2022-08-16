@@ -95,7 +95,12 @@
 		var os = getOS();
 		var myvideo = document.getElementById("va");
 		var myaudio = document.getElementById("vb");
-		if(os !== 'iOS') {
+		myvideo.onplay  = function() { myaudio.play();  }
+			myvideo.onpause = function() { myaudio.pause(); }
+			var vcurrentTime = myvideo.currentTime ;
+			myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime}
+		/*
+			if(os !== 'iOS') {
 			
 			myvideo.onplay  = function() { myaudio.play();  }
 			myvideo.onpause = function() { myaudio.pause(); }
@@ -109,7 +114,8 @@
 			myvideo.addEventListener('pause'), (event) => {
 				myaudio.pause();
 			}
-		}
+			
+		}*/
 			
 	  });
 })( jQuery );
