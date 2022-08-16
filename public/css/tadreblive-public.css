@@ -15,7 +15,7 @@
  }
 
  .td-v2{
-    position: -webkit-sticky;
+    position: -webkit-inherit;
     position: inherit;
     width: 20%;
     padding-top: 39.5%;
