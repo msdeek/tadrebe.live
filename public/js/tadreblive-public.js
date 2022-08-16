@@ -48,5 +48,12 @@
 			},
 		  });
 	  });
-
+	  $(document).ready(function () {
+		$(document)
+	var myvideo = document.getElementById("va");
+	var myaudio = document.getElementById("vb");
+	myvideo.onplay  = function() { myaudio.play();  }
+	myvideo.onpause = function() { myaudio.pause(); }
+	myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime }
+	  });
 })( jQuery );
