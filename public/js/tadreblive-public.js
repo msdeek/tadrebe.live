@@ -47,13 +47,21 @@
 			  action: "enroll_user_to_cpanel",
 			},
 		  });
-
+		  
 		  $.ajax({
 			method: "post",
 			url: get_bigbluebuttonbn.ajaxurl,
 			dataType: "json",
 			data: {
 			  action: "get_bigbluebuttonbn",
+			},
+		  });
+		  $.ajax({
+			method: "post",
+			url: bigbluebuttonbn.ajaxurl,
+			dataType: "json",
+			data: {
+			  action: "bigbluebuttonbn",
 			},
 		  });
 	  });

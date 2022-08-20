@@ -230,6 +230,8 @@ class tadreblive {
 		$this->loader->add_action( 'wp_ajax_nopriv_get_bigbluebuttonbn',$plugin_public,   'get_bigbluebuttonbn' ) ;
 		$this->loader->add_shortcode('bbb_meeting', $plugin_public, 'display_bigbluebuttonbn_meeting');
 		
+		$this->loader->add_action( 'wp_ajax_bigbluebuttonbn',$plugin_public,   'bigbluebuttonbn' ) ;
+		$this->loader->add_action( 'wp_ajax_nopriv_bigbluebuttonbn',$plugin_public,   'bigbluebuttonbn' ) ;
 
 		$plugin_cpanel_user = new CPanelUsers( $this->get_tadreblive(), $this->get_version() );
 		
