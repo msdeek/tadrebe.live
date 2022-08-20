@@ -267,7 +267,8 @@ class CPanel_Content
             }
         }
     }
-    public function bigbluebuttonbn_add(){
+    public function bigbluebuttonbn_add()
+    {
         $post_type = $this->learndash_post_type('topic');
         $post_type = $post_type['post_type'];
         $topics = get_posts(array(
@@ -285,65 +286,63 @@ class CPanel_Content
             $cmid = get_post_meta($topic_id, 'cpanel_module_id', true);
 
             if ('bigbluebuttonbn' == $modname) {
-                $short = '[bbb_meeting topicid='.("$topic_id").']';
+                $short = '[bbb_meeting topicid=' . ("$topic_id") . ']';
 
                 $my_post = array(
                     'ID'           => $topic_id,
                     'post_content' =>  $short,
                 );
-                $my_post= wp_update_post($my_post);
-
-
+                $my_post = wp_update_post($my_post);
             }
+        }
     }
-}
 
-    
+
     public function bigbluebuttonbn($baseurl, $token, $topic_id)
     {
-      
-   
-       
-            #$topic_id = $post->id;
-
-            $modname = get_post_meta($topic_id, 'modname', true);
-
-            $cmid = get_post_meta($topic_id, 'cpanel_module_id', true);
-
-            if ('bigbluebuttonbn' == $modname) {
-
-                $bigbluebuttonbnid = get_post_meta($topic_id, 'module_instance', true);
-
-                $method = 'GET';
-                $body = array(
-                    'wstoken' => $token,
-                    'wsfunction' => 'mod_bigbluebuttonbn_meeting_info',
-                    'moodlewsrestformat' => 'json',
-                    'bigbluebuttonbnid' => $bigbluebuttonbnid,
-                );
-                $content = new CPanel_Services;
-                $meeting_content = $content->register_moodle_services($baseurl, $method, $body);
-
-                $meetingid = $meeting_content->meetingid;
-                #echo $meetingid;
 
 
 
+        #$topic_id = $post->id;
 
-                add_post_meta($topic_id, 'meetingid', $meetingid, true);
+        $modname = get_post_meta($topic_id, 'modname', true);
+
+        $cmid = get_post_meta($topic_id, 'cpanel_module_id', true);
+
+        if ('bigbluebuttonbn' == $modname) {
+
+            $bigbluebuttonbnid = get_post_meta($topic_id, 'module_instance', true);
+
+            $method = 'GET';
+            $body = array(
+                'wstoken' => $token,
+                'wsfunction' => 'mod_bigbluebuttonbn_meeting_info',
+                'moodlewsrestformat' => 'json',
+                'bigbluebuttonbnid' => $bigbluebuttonbnid,
+            );
+            $content = new CPanel_Services;
+            $meeting_content = $content->register_moodle_services($baseurl, $method, $body);
+
+            $meetingid = $meeting_content->meetingid;
+            #echo $meetingid;
 
 
-                $meetingbody = array(
-                    'wstoken' => $token,
-                    'wsfunction' => 'mod_bigbluebuttonbn_get_join_url',
-                    'moodlewsrestformat' => 'json',
-                    'cmid' => $cmid,
-                );
-               // $usecode = __('Join&nbsp;Session', 'coupons_shortcodes_codefish');
-                $meeting_url = $content->register_moodle_services($baseurl, $method, $meetingbody);
-                $meeting_url = $meeting_url->join_url;
-                return  $meeting_url;
-                /**
+
+
+            add_post_meta($topic_id, 'meetingid', $meetingid, true);
+
+
+            $meetingbody = array(
+                'wstoken' => $token,
+                'wsfunction' => 'mod_bigbluebuttonbn_get_join_url',
+                'moodlewsrestformat' => 'json',
+                'cmid' => $cmid,
+            );
+            // $usecode = __('Join&nbsp;Session', 'coupons_shortcodes_codefish');
+            $meeting_url = $content->register_moodle_services($baseurl, $method, $meetingbody);
+            $meeting_url = $meeting_url->join_url;
+            return  $meeting_url;
+            /**
                
                 $meeting_url = "'" . $meeting_url . "'";
                 $content = '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
@@ -376,9 +375,7 @@ class CPanel_Content
 
                 $recordings = 'recordID';
 
-              */
-                
-            
+             */
         }
     }
 }
