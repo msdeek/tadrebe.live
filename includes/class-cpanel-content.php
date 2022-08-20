@@ -122,11 +122,11 @@ class CPanel_Content
                     add_post_meta($post_id, $key, $value, true);
                     add_post_meta($post_id, 'fullname', $fullname, true);
                     add_post_meta($post_id, 'cplang', $lang, true);
-                }else{
-                   
-                    update_post_meta( $course_id, 'fullname', $fullname);
-                    update_post_meta( $course_id, 'cplang', $lang);
-                    $course_id=  wp_update_post(array(
+                } else {
+
+                    update_post_meta($course_id, 'fullname', $fullname);
+                    update_post_meta($course_id, 'cplang', $lang);
+                    $course_id =  wp_update_post(array(
                         'ID' => $course_id,
                         'post_title' => $shortname,
                     ));
@@ -150,7 +150,7 @@ class CPanel_Content
         ));
         if (0 != $token) {
             foreach ((array)$courses as $course) {
-                $get_course = get_post( $course );
+                $get_course = get_post($course);
                 $post_author = $get_course->post_author;
                 $moodle_course_id = get_post_meta($course, $key, true);
                 $method = 'GET';
@@ -191,7 +191,7 @@ class CPanel_Content
                         $lesson_id = wp_insert_post(array(
                             'post_title' => $lesson_fullname,
                             'post_type' =>  $lesson_post_type,
-                            'post_author'=> $post_author,
+                            'post_author' => $post_author,
                         ));
                         add_post_meta($lesson_id, $lesson_key, $lesson_value, true);
                         learndash_update_setting($lesson_id, 'course', $course, true);
@@ -201,10 +201,10 @@ class CPanel_Content
                             'post_title' => $lesson_fullname,
                             'post_status' =>  $post_status,
                             'menu_order' => $lesson_section,
-                            'post_author'=> $post_author,
+                            'post_author' => $post_author,
                         ));
                     }
-                
+
 
 
                     foreach ((array) $modules as $module) {
@@ -240,12 +240,12 @@ class CPanel_Content
                                 $module_value
                             )
                         );
-                       
+
                         if (false == $module_id) {
                             $topic_id = wp_insert_post(array(
                                 'post_title' => $module_fullname,
                                 'post_type' =>  $module_post_type,
-                                'post_author'=> $post_author,
+                                'post_author' => $post_author,
                             ));
                             add_post_meta($topic_id, $module_key, $module_value, true);
                             learndash_update_setting($topic_id, 'course', $course, true);
@@ -254,45 +254,75 @@ class CPanel_Content
                             add_post_meta($topic_id, 'modname', $modname, true);
                             add_post_meta($topic_id, 'module_instance', $module_instance, true);
                             add_post_meta($topic_id, 'module_contextid', $module_contextid, true);
-                        }else{             
-                                $topic_id = wp_update_post(array(
-                                    'ID' => $module_id,
-                                    'post_title' => $module_fullname,
-                                    'post_status' =>  $post_status,
-                                    'post_author'=> $post_author,
-                                ));
-                             
-                           
+                        } else {
+                            $topic_id = wp_update_post(array(
+                                'ID' => $module_id,
+                                'post_title' => $module_fullname,
+                                'post_status' =>  $post_status,
+                                'post_author' => $post_author,
+                            ));
                         }
                     }
                 }
             }
         }
     }
-   
+    public function bigbluebuttonbn_add(){
+        $post_type = $this->learndash_post_type('topic');
+        $post_type = $post_type['post_type'];
+        $topics = get_posts(array(
+            'fields'          => 'ids',
+            'numberposts' => -1,
+            'post_type' => $post_type,
+            'post_status' => 'publish'
+        ));
+        #var_dump($topics);
+        foreach ((array) $topics as $topic) {
+            $topic_id = $topic;
 
-    public function bigbluebuttonbn($baseurl, $token){
-    $post_type = $this->learndash_post_type('topic');
-    $post_type = $post_type['post_type'];
-    $topics = get_posts(array(
-        'fields'          => 'ids',
-        'numberposts' => -1,
-        'post_type' => $post_type,
-        'post_status' => 'publish'
-    ));
-    
+            $modname = get_post_meta($topic_id, 'modname', true);
 
-    foreach ( (array) $topics as $topic){
-        $topic_id = $topic;
-        
-        $modname = get_post_meta($topic_id, 'modname', true);
+            $cmid = get_post_meta($topic_id, 'cpanel_module_id', true);
 
-        $cmid = get_post_meta($topic_id, 'cpanel_module_id', true);
-        
             if ('bigbluebuttonbn' == $modname) {
-                                        
+                $short = '[bbb_meeting topicid='.("$topic_id").']';
+
+                $my_post = array(
+                    'ID'           => $topic_id,
+                    'post_content' =>  $short,
+                );
+                $my_post= wp_update_post($my_post);
+
+
+            }
+    }
+}
+
+    
+    public function bigbluebuttonbn($baseurl, $token, $topic_id)
+    {
+      
+        $post_type = $this->learndash_post_type('topic');
+        $post_type = $post_type['post_type'];
+        $topics = get_posts(array(
+            'fields'          => 'ids',
+            'numberposts' => -1,
+            'post_type' => $post_type,
+            'post_status' => 'publish'
+        ));
+
+       
+       
+            #$topic_id = $post->id;
+
+            $modname = get_post_meta($topic_id, 'modname', true);
+
+            $cmid = get_post_meta($topic_id, 'cpanel_module_id', true);
+
+            if ('bigbluebuttonbn' == $modname) {
+
                 $bigbluebuttonbnid = get_post_meta($topic_id, 'module_instance', true);
-                
+
                 $method = 'GET';
                 $body = array(
                     'wstoken' => $token,
@@ -300,15 +330,15 @@ class CPanel_Content
                     'moodlewsrestformat' => 'json',
                     'bigbluebuttonbnid' => $bigbluebuttonbnid,
                 );
-                $content = new CPanel_Services; 
+                $content = new CPanel_Services;
                 $meeting_content = $content->register_moodle_services($baseurl, $method, $body);
-               
+
                 $meetingid = $meeting_content->meetingid;
-                    #echo $meetingid;
-                
-                
-                
-                
+                #echo $meetingid;
+
+
+
+
                 add_post_meta($topic_id, 'meetingid', $meetingid, true);
 
 
@@ -318,17 +348,22 @@ class CPanel_Content
                     'moodlewsrestformat' => 'json',
                     'cmid' => $cmid,
                 );
-                
+               // $usecode = __('Join&nbsp;Session', 'coupons_shortcodes_codefish');
                 $meeting_url = $content->register_moodle_services($baseurl, $method, $meetingbody);
                 $meeting_url = $meeting_url->join_url;
-                $meeting_url = "'".$meeting_url."'";
-                $content = '<input type="button" value="Home" class="homebutton" id="joinsession" onClick="document.location.href='.$meeting_url.'" />';
+                return  $meeting_url;
+                /**
+               
+                $meeting_url = "'" . $meeting_url . "'";
+                $content = '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
                 $my_post = array(
                     'ID'           => $topic_id,
-                    
+
                     'post_content' => $content ,
                 );
                 wp_update_post($my_post);
+                /**
+                 
                 $service_url = 'https://lv1.tadreb.live/bigbluebutton/api/';
                 $callName = 'getRecordings';
                 $queryString = array(
@@ -339,22 +374,20 @@ class CPanel_Content
                 $chuksum = sha1($callName  . $parm . $sharedSecret);
                 $arguments = array(
                     'method' => 'GET',
-                    
+
                 );
-                $url = $service_url.$callName .'?' . $parm . '&checksum=' .  $chuksum;
-                $record_data= wp_remote_get($url, $arguments);
-                $record_data = json_encode( wp_remote_retrieve_body($record_data));
+                $url = $service_url . $callName . '?' . $parm . '&checksum=' .  $chuksum;
+                $record_data = wp_remote_get($url, $arguments);
+                $record_data = json_encode(wp_remote_retrieve_body($record_data));
                 $data = json_decode($record_data, TRUE);
-               
+
                 $xml = simplexml_load_string($data);
 
                 $recordings = 'recordID';
-               
-               
-            }
+
+              */
+                
+            
+        }
     }
-    }   
 }
-   
-
-

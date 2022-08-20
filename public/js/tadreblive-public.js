@@ -47,6 +47,15 @@
 			  action: "enroll_user_to_cpanel",
 			},
 		  });
+
+		  $.ajax({
+			method: "post",
+			url: get_bigbluebuttonbn.ajaxurl,
+			dataType: "json",
+			data: {
+			  action: "get_bigbluebuttonbn",
+			},
+		  });
 	  });
 	  function getMobileOperatingSystem() {
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;

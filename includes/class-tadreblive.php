@@ -223,9 +223,13 @@ class tadreblive {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'enqueue_block_editor_assets',$plugin_public,'tadreb_custom_block' );
 		#$this->loader->add_action( 'init', $plugin_public,   'get_bigbluebuttonbn' ) ;
 		#$this->loader->add_filter( 'locale', $plugin_public, 'chnag_loacal' );
-
+		$this->loader->add_action( 'wp_ajax_get_bigbluebuttonbn',$plugin_public,   'get_bigbluebuttonbn' ) ;
+		$this->loader->add_action( 'wp_ajax_nopriv_get_bigbluebuttonbn',$plugin_public,   'get_bigbluebuttonbn' ) ;
+		$this->loader->add_shortcode('bbb_meeting', $plugin_public, 'display_bigbluebuttonbn_meeting');
+		
 
 		$plugin_cpanel_user = new CPanelUsers( $this->get_tadreblive(), $this->get_version() );
 		
@@ -245,6 +249,8 @@ class tadreblive {
 		
 
 	}
+
+
 
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.

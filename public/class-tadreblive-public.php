@@ -77,8 +77,12 @@ class tadreblive_Public
 
 		wp_enqueue_style($this->tadreblive, plugin_dir_url(__FILE__) . 'css/tadreblive-public.css', array(), $this->version, 'all');
 		wp_enqueue_style('video-tadreb', 'https://vjs.zencdn.net/7.20.2/video-js.css', array(), $this->version, 'all');
+
 	
 	}
+
+	
+	
 
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
@@ -112,6 +116,15 @@ class tadreblive_Public
 			'ajax_nonce' => wp_create_nonce(action: 'enroll_user_to_cpanel_nonce'),
 
 		));
+		wp_localize_script($this->tadreblive, 'get_bigbluebuttonbn', array(
+			'ajaxurl' => admin_url('admin-ajax.php'),
+			'ajax_nonce' => wp_create_nonce(action: 'get_bigbluebuttonbn_nonce'),
+
+		));
+	}
+	public function tadreb_custom_block(){
+		wp_enqueue_script('palyer', plugin_dir_url(__FILE__) . 'js/player.js', array('jquery'), $this->version, false);
+
 	}
 
 	public function chnag_loacal($post_id){
@@ -135,10 +148,36 @@ class tadreblive_Public
 			$user_id = $pcurrent_user->ID;
 			$token =  get_user_meta($user_id,  'cp_token', true);
 			$content = new CPanel_Content;
-			$content = $content->bigbluebuttonbn($baseurl, $token);
-			return $content;
+			$content = $content->bigbluebuttonbn_add();
+			#var_dump($content);
+			$response = json_encode($content);
+			echo $response;
+			die();
+			
 		}
 
+	}
+
+	public function display_bigbluebuttonbn_meeting($attr){
+		$baseurl = get_option('cpurl');
+		if ( is_user_logged_in() ) {
+
+			$args = shortcode_atts( array(
+     
+				'topicid' => '#',
+		
+	 
+			), $attr );
+			$pcurrent_user = wp_get_current_user();
+			$user_id = $pcurrent_user->ID;
+			$token =  get_user_meta($user_id,  'cp_token', true);
+			$content = new CPanel_Content;
+			$usecode = __('Join&nbsp;Session', 'tadreblive');
+			$meeting_url= $content->bigbluebuttonbn($baseurl, $token, $args['topicid']);
+			$meeting_url = "'" . $meeting_url . "'";
+            $meeting_url = '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
+			return $meeting_url;
+		}
 	}
 
 }
