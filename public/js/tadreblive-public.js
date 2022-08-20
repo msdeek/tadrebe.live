@@ -118,12 +118,12 @@
 	
 		myvideo.addEventListener( 'play', () => {
 			myaudio.play();
-			setTimeout(checkStarted, 500);
+			//setTimeout(checkStarted, 500);
 		});
 
 		myvideo.addEventListener( 'canplay', () => {
 			myaudio.play();
-			setTimeout(checkStarted, 500);
+			//setTimeout(checkStarted, 500);
 		});
 
 		myvideo.addEventListener( 'pause', () => {
