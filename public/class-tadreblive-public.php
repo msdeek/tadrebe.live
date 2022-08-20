@@ -173,7 +173,8 @@ class tadreblive_Public
 			$token =  get_user_meta($user_id,  'cp_token', true);
 			$content = new CPanel_Content;
 			$usecode = __('Join&nbsp;Session', 'tadreblive');
-			$meeting_url= $content->bigbluebuttonbn($baseurl, $token, $args['topicid']);
+			$topic_id = $args['topicid'];
+			$meeting_url= $content->bigbluebuttonbn($baseurl, $token, $topic_id);
 			$meeting_url = "'" . $meeting_url . "'";
             $meeting_url = '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
 			return $meeting_url;

@@ -302,16 +302,7 @@ class CPanel_Content
     public function bigbluebuttonbn($baseurl, $token, $topic_id)
     {
       
-        $post_type = $this->learndash_post_type('topic');
-        $post_type = $post_type['post_type'];
-        $topics = get_posts(array(
-            'fields'          => 'ids',
-            'numberposts' => -1,
-            'post_type' => $post_type,
-            'post_status' => 'publish'
-        ));
-
-       
+   
        
             #$topic_id = $post->id;
 
