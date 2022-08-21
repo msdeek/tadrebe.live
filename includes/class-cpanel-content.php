@@ -385,7 +385,9 @@ class CPanel_Content
                 }}
             
            
-            return $meeting;
+                $response = json_encode($meeting);
+                echo $response;
+                die()
             /**
                
                 $meeting_url = "'" . $meeting_url . "'";
