@@ -266,6 +266,7 @@ class CPanel_Content
                 }
             }
         }
+           
     }
     public function bigbluebuttonbn_add()
     {
@@ -385,43 +386,9 @@ class CPanel_Content
                 }}
             
            
-                $response = json_encode($meeting);
-                echo $response;
-                die()
-            /**
-               
-                $meeting_url = "'" . $meeting_url . "'";
-                $content = '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
-                $my_post = array(
-                    'ID'           => $topic_id,
-
-                    'post_content' => $content ,
-                );
-                wp_update_post($my_post);
-                /**
-                 
-                $service_url = 'https://lv1.tadreb.live/bigbluebutton/api/';
-                $callName = 'getRecordings';
-                $queryString = array(
-                    'meetingID' => $meetingid,
-                );
-                $parm = 'meetingID=' . urlencode($meetingid);
-                $sharedSecret = '06lksGdXVgfGf7hIEso7E4DwHZIPUjwCz41nDvkCI';
-                $chuksum = sha1($callName  . $parm . $sharedSecret);
-                $arguments = array(
-                    'method' => 'GET',
-
-                );
-                $url = $service_url . $callName . '?' . $parm . '&checksum=' .  $chuksum;
-                $record_data = wp_remote_get($url, $arguments);
-                $record_data = json_encode(wp_remote_retrieve_body($record_data));
-                $data = json_decode($record_data, TRUE);
-
-                $xml = simplexml_load_string($data);
-
-                $recordings = 'recordID';
-
-             */
+            
+       
         }
+        return $meeting;
     }
 }
