@@ -324,7 +324,7 @@ class CPanel_Content
             $meeting_content = $content->register_moodle_services($baseurl, $method, $body);
 
             $meetingid = $meeting_content->meetingid;
-            #echo $meetingid;
+            echo $meetingid;
 
 
 

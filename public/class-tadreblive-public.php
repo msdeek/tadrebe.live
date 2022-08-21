@@ -191,7 +191,7 @@ class tadreblive_Public
 			$content .= '<source src="'.$deskshare.'" type="video/mp4">';
 			$content .='</video>';
 			$content .='<video autobuffer="true" autoplay="true" preload="auto" class="td-v2" id="vb"> ';
-			$content .='<source src="'.$webcam .'" type="video/mp4">';
+			$content .='<source src="'.$webcam.'" type="video/mp4">';
 			$content .='</video>';
 			$content .='</div>';
 			return $content;
