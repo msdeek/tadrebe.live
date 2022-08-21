@@ -56,14 +56,14 @@
 			  action: "get_bigbluebuttonbn",
 			},
 		  });
-		  /**$.ajax({
+		  $.ajax({
 			method: "post",
 			url: bigbluebuttonbn.ajaxurl,
 			dataType: "json",
 			data: {
 			  action: "bigbluebuttonbn",
 			},
-		  });*/
+		  });
 	  });
 	  function getMobileOperatingSystem() {
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
