@@ -121,11 +121,11 @@ class tadreblive_Public
 			'ajax_nonce' => wp_create_nonce(action: 'get_bigbluebuttonbn_nonce'),
 
 		));
-		wp_localize_script($this->tadreblive, 'bigbluebuttonbn', array(
+		/**wp_localize_script($this->tadreblive, 'bigbluebuttonbn', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'ajax_nonce' => wp_create_nonce(action: 'bigbluebuttonbn_nonce'),
 
-		));
+		));*/
 	}
 	public function tadreb_custom_block(){
 		wp_enqueue_script('palyer', plugin_dir_url(__FILE__) . 'js/player.js', array('jquery'), $this->version, false);

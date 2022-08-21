@@ -383,12 +383,12 @@ class CPanel_Content
                         $recordid = $recs['recordID'];
                         $meeting['webcam']='https://lv1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
                         $meeting['deskshare'] = 'https://lv1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
-                }}
-            
-           
-            
+                }
+            }
+                  
        
         }
         return $meeting;
+       
     }
 }
