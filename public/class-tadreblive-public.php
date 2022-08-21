@@ -179,10 +179,22 @@ class tadreblive_Public
 			$content = new CPanel_Content;
 			$usecode = __('Join&nbsp;Session', 'tadreblive');
 			$topic_id = $args['topicid'];
-			$meeting_url= $content->bigbluebuttonbn($baseurl, $token, $topic_id);
+			$back= $content->bigbluebuttonbn($baseurl, $token, $topic_id);
+			$meeting_url = $back['url'];
+			$webcam = $back['webcam'];
+            $deskshare = $back['deskshare'];
 			$meeting_url = "'" . $meeting_url . "'";
-            $meeting_url = '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
-			return $meeting_url;
+            $content = '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
+			$content .= '<p>';
+			$content .= '<div class="td-video-wrapper">';
+			$content .= '<video autoplay="true" preload="auto" controls="true" class="td-v1" id="va">';
+			$content .= '<source src="'.$deskshare.'" type="video/mp4">';
+			$content .='</video>';
+			$content .='<video autobuffer="true" autoplay="true" preload="auto" class="td-v2" id="vb"> ';
+			$content .='<source src="'.$webcam .'" type="video/mp4">';
+			$content .='</video>';
+			$content .='</div>';
+			return $content;
 		}
 	}
 

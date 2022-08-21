@@ -340,8 +340,52 @@ class CPanel_Content
             );
             // $usecode = __('Join&nbsp;Session', 'coupons_shortcodes_codefish');
             $meeting_url = $content->register_moodle_services($baseurl, $method, $meetingbody);
-            $meeting_url = $meeting_url->join_url;
-            return  $meeting_url;
+            $meeting['url'] = $meeting_url->join_url;
+
+
+            $service_url = 'https://lv1.tadreb.live/bigbluebutton/api/';
+            $callName = 'getRecordings';
+            $queryString = array(
+                'meetingID' => $meetingid,
+            );
+            $parm = 'meetingID=' . urlencode($meetingid);
+            $sharedSecret = '06lksGdXVgfGf7hIEso7E4DwHZIPUjwCz41nDvkCI';
+            $chuksum = sha1($callName  . $parm . $sharedSecret);
+
+            $arguments = array(
+                'method' => 'GET',
+
+            );
+            $url = $service_url . $callName . '?' . $parm . '&checksum=' .  $chuksum;
+            #echo $url;
+            $record_data = wp_remote_get($url, $arguments);
+
+            $record_data = simplexml_load_string(wp_remote_retrieve_body($record_data));
+            
+            
+            $record_data = json_encode($record_data);
+            $data = json_decode($record_data, TRUE);
+            
+            $data = $data['recordings'];
+            #var_dump($data);
+            #$data = $data['recording'];
+            foreach ((array)$data as $recs){
+               
+                if ( null == $recs['recordID']){
+                    foreach ((array)$recs as $rec){
+                        $recordid = $rec['recordID'];
+                        $meeting['webcam']='https://lv1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
+                        $meeting['deskshare'] = 'https://lv1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
+                   
+                    }
+                }else{
+                        $recordid = $recs['recordID'];
+                        $meeting['webcam']='https://lv1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
+                        $meeting['deskshare'] = 'https://lv1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
+                }}
+            
+           
+            return $meeting;
             /**
                
                 $meeting_url = "'" . $meeting_url . "'";
