@@ -355,8 +355,8 @@ class CPanel_Content
             $opentime = gmdate('Y-m-d H:i:s', $opentime);
             $closingtime = $meeting_content->closingtime;
             $closingtime = gmdate('Y-m-d H:i:s', $closingtime);
-            $meeting['openingtime'] = get_gmt_from_date($opentime, 'Y-m-d g:i A');
-            $meeting['closingtime'] = get_gmt_from_date($closingtime, 'Y-m-d g:i A');
+            $meeting['openingtime'] = get_date_from_gmt($opentime, 'Y-m-d g:i A');
+            $meeting['closingtime'] = get_date_from_gmt($closingtime, 'Y-m-d g:i A');
             $meeting['statusrunning'] = $meeting_content->statusrunning;
             $meeting['statusclosed'] = $meeting_content->statusclosed;
             $meeting['statusopen'] = $meeting_content->statusopen;
