@@ -382,7 +382,7 @@ class CPanel_Content
             );
             // $usecode = __('Join&nbsp;Session', 'coupons_shortcodes_codefish');
             $meeting_url = $content->register_moodle_services($baseurl, $method, $meetingbody);
-            $meeting['url'] =isset($meeting_url->join_url);
+            $meeting['url'] =$meeting_url->join_url;
 
 
             $service_url = 'https://lv1.tadreb.live/bigbluebutton/api/';
