@@ -221,7 +221,7 @@ class tadreblive_Public
 			$content .='<source src="'.$webcam.'" type="video/mp4">';
 			$content .='</video>';
 			$content .='</div>';
-			$content .='<div><h1>'.$meeting_open.'</h1></div>';
+			
 			}
 			return $content;
 		}
