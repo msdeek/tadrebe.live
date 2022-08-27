@@ -363,7 +363,7 @@ class CPanel_Content
             $meeting['statusmessage'] = $meeting_content->statusmessage;
             $meeting['participantcount'] = $meeting_content->participantcount;
             if (isset($meeting_content->canjoin)){
-            $meeting['canjoin'] = $meeting_content->canjoin;
+                $meeting['canjoin'] = $meeting_content->canjoin;
             }
             $meeting['ismoderator'] = $meeting_content->ismoderator;
             #echo $openingtime;
