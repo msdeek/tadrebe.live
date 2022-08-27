@@ -47,6 +47,13 @@ class cpanel_Admin
 	 * @param      string    $tadreblive       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
+	
+	
+	/**
+	 * Register the tadreb.live menue  for the admin area.
+	 *
+	 * @since    1.0.0
+	 */
 
 	public function tadreb_live_cpanel_manue()
 	{
@@ -59,7 +66,11 @@ class cpanel_Admin
 		require_once 'partials/tadreblive-cpanel-admin-display.php';
 	}
 
-
+	/**
+	 * Register the cpanel settings.
+	 *
+	 * @since    1.0.0
+	 */
 
 	public function register_cpanel_settings()
 	{
@@ -71,6 +82,19 @@ class cpanel_Admin
 		register_setting('cpcred', 'cptoken');
 	}
 
+	/**
+	 * Register the BigBlueButton settings.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_bbb_settings()
+	{
+		register_setting('bbbcred', 'bbburl');
+		register_setting('bbbcred', 'bbbsharedsecret');
+	}
+
+	
+	
 	public function register_token()
 	{
 
@@ -87,10 +111,7 @@ class cpanel_Admin
 
 	public function test_connection()
 	{
-		/**$username   = isset( $_POST['username'] ) ? sanitize_text_field( wp_unslash( $_POST['username'] ) ) : '';
-		$password   = isset( $_POST['password'] ) ? sanitize_text_field( wp_unslash( $_POST['password'] ) ) : '';
-		$url   = isset( $_POST['url'] ) ? sanitize_text_field( wp_unslash( $_POST['url'] ) ) : '';
-		$services   = isset( $_POST['services'] ) ? sanitize_text_field( wp_unslash( $_POST['services'] ) ) : '';*/
+		
 		$username = get_option('cpusername');
 		$password = get_option('cppassword');
 		$url = get_option('cpurl');
@@ -181,7 +202,8 @@ class cpanel_Admin
 	{
 		switch ($column) {
 			case 'cpanel_course_id':
-				echo get_post_meta($post_id, 'cpanel_course_id', true);
+				$cp_id = get_post_meta($post_id, 'cpanel_course_id', true);
+				echo '<a href="https://cp.tadreb.live/course/view.php?id='.$cp_id.'">'.$cp_id.'</a>';
 				break;
 			case 'fullname':
 				echo get_post_meta($post_id, 'fullname', true);
@@ -189,6 +211,22 @@ class cpanel_Admin
 			case 'cplang':
 				echo get_post_meta($post_id, 'cplang', true);
 				break;
+		}
+	}
+
+	function cpanel_module_id_columns($columns)
+	{		
+		$columns['cpanel_module_url'] = 'CPanel Link';
+		return $columns;
+	}
+
+	function cpanel_module_id_column($column, $post_id)
+	{
+		if ($column == 'cpanel_module_url'){
+			$cp_url = get_post_meta($post_id, 'module_url', true);
+			$cp_id = get_post_meta($post_id, 'cpanel_module_id', true);
+			echo '<a href="'.$cp_url.'">'.$cp_id.'</a>';
+			
 		}
 	}
 }

@@ -166,12 +166,21 @@ class CPanel_Content
                     $lesson_post_type = $this->learndash_post_type('lesson');
                     $lesson_key = $lesson_post_type['key'];
                     $lesson_post_type = $lesson_post_type['post_type'];
-                    $lesson_value = $lesson->id;
+                    
+                    // Read Josn Peoperty 
+                    $lesson_value = $lesson->id; // Lesson ID
                     $lesson_fullname = $lesson->name;
+                    $lesson_visible = $lesson->visible;
+                    $lesson_summary = $lesson->summary;
+                    $lesson_summaryformat = $lesson->summaryformat;
                     $lesson_section = $lesson->section;
-                    $visible = $lesson->visible;
+                    $lesson_hiddenbynumsections = $lesson->hiddenbynumsections;
+                    $lesson_uservisible = $lesson->uservisible;
+                    
                     $modules = $lesson->modules;
-                    if ($visible == '1') {
+
+                    
+                    if ($lesson_visible == '1') {
                         $post_status = 'publish';
                     } else {
                         $post_status = 'private';
@@ -180,10 +189,10 @@ class CPanel_Content
                     $lesson_id = $wpdb->get_var( // @codingStandardsIgnoreLine
                         $wpdb->prepare(
                             "SELECT post_id
-                        FROM {$wpdb->prefix}postmeta
-                        WHERE meta_key = 'cpanel_topic_id'
-                        AND meta_value = %s",
-                            $lesson_value
+                            FROM {$wpdb->prefix}postmeta
+                            WHERE meta_key = 'cpanel_topic_id'
+                            AND meta_value = %s",
+                                $lesson_value
                         )
                     );
 
@@ -192,41 +201,51 @@ class CPanel_Content
                             'post_title' => $lesson_fullname,
                             'post_type' =>  $lesson_post_type,
                             'post_author' => $post_author,
+                            'post_content' => $lesson_summary,
+                            'menu_order' => $lesson_section,
+                            'post_status' =>  $post_status,
                         ));
                         add_post_meta($lesson_id, $lesson_key, $lesson_value, true);
                         learndash_update_setting($lesson_id, 'course', $course, true);
-                    } else {
+                        add_post_meta($lesson_id, 'lesson_summaryformat', $lesson_summaryformat, true);
+                        add_post_meta($lesson_id, 'lesson_hiddenbynumsections', $lesson_hiddenbynumsections, true);
+                        add_post_meta($lesson_id, 'lesson_uservisible', $lesson_uservisible, true);
+                    }else{
                         $lesson_id = wp_update_post(array(
                             'ID' => $lesson_id,
                             'post_title' => $lesson_fullname,
                             'post_status' =>  $post_status,
                             'menu_order' => $lesson_section,
                             'post_author' => $post_author,
+                            'post_content' => $lesson_summary,
                         ));
+                        update_post_meta($lesson_id, 'lesson_summaryformat', $lesson_summaryformat);
+                        update_post_meta($lesson_id, 'lesson_hiddenbynumsections', $lesson_hiddenbynumsections);
+                        update_post_meta($lesson_id, 'lesson_uservisible', $lesson_uservisible);
                     }
 
 
-
+                    $module_section= 0;
                     foreach ((array) $modules as $module) {
-
+                        //for ($module_section = 0; null != $module; $module_section+=10 );
                         $module_post_type = $this->learndash_post_type('topic');
                         $module_key = $module_post_type['key'];
                         $module_post_type = $module_post_type['post_type'];
 
+                        // Read Josn Peoperty 
                         $module_value = $module->id;
-
-
-
-
-
-
+                        $module_url = $module->url;
                         $module_fullname = $module->name;
-                        $modname = $module->modname;
                         $module_instance = $module->instance;
                         $module_contextid = $module->contextid;
+                        $module_visible = $module->visible;
+                        $modname = $module->modname;
+                        
+                        
+                        
 
 
-                        if ($visible == '1') {
+                        if ($module_visible == '1') {
                             $post_status = 'publish';
                         } else {
                             $post_status = 'private';
@@ -246,6 +265,7 @@ class CPanel_Content
                                 'post_title' => $module_fullname,
                                 'post_type' =>  $module_post_type,
                                 'post_author' => $post_author,
+                                'menu_order' => $module_section++,
                             ));
                             add_post_meta($topic_id, $module_key, $module_value, true);
                             learndash_update_setting($topic_id, 'course', $course, true);
@@ -254,13 +274,19 @@ class CPanel_Content
                             add_post_meta($topic_id, 'modname', $modname, true);
                             add_post_meta($topic_id, 'module_instance', $module_instance, true);
                             add_post_meta($topic_id, 'module_contextid', $module_contextid, true);
+                            add_post_meta($topic_id,'module_url', $module_url, true);
                         } else {
                             $topic_id = wp_update_post(array(
                                 'ID' => $module_id,
                                 'post_title' => $module_fullname,
                                 'post_status' =>  $post_status,
                                 'post_author' => $post_author,
+                                'menu_order' => $module_section++,
                             ));
+                            update_post_meta($topic_id, 'modname', $modname);
+                            update_post_meta($topic_id, 'module_instance', $module_instance);
+                            update_post_meta($topic_id, 'module_contextid', $module_contextid);
+                            update_post_meta($topic_id,'module_url', $module_url);
                         }
                     }
                 }
@@ -325,7 +351,22 @@ class CPanel_Content
             $meeting_content = $content->register_moodle_services($baseurl, $method, $body);
 
             $meetingid = $meeting_content->meetingid;
-            #echo $meetingid;
+            $opentime = $meeting_content->openingtime;
+            $opentime = gmdate('Y-m-d H:i:s', $opentime);
+            $closingtime = $meeting_content->closingtime;
+            $closingtime = gmdate('Y-m-d H:i:s', $closingtime);
+            $meeting['openingtime'] = get_gmt_from_date($opentime, 'Y-m-d g:i A');
+            $meeting['closingtime'] = get_gmt_from_date($closingtime, 'Y-m-d g:i A');
+            $meeting['statusrunning'] = $meeting_content->statusrunning;
+            $meeting['statusclosed'] = $meeting_content->statusclosed;
+            $meeting['statusopen'] = $meeting_content->statusopen;
+            $meeting['statusmessage'] = $meeting_content->statusmessage;
+            $meeting['participantcount'] = $meeting_content->participantcount;
+            if (isset($meeting_content->canjoin)){
+            $meeting['canjoin'] = $meeting_content->canjoin;
+            }
+            $meeting['ismoderator'] = $meeting_content->ismoderator;
+            #echo $openingtime;
 
 
 
@@ -341,7 +382,7 @@ class CPanel_Content
             );
             // $usecode = __('Join&nbsp;Session', 'coupons_shortcodes_codefish');
             $meeting_url = $content->register_moodle_services($baseurl, $method, $meetingbody);
-            $meeting['url'] = $meeting_url->join_url;
+            $meeting['url'] =isset($meeting_url->join_url);
 
 
             $service_url = 'https://lv1.tadreb.live/bigbluebutton/api/';

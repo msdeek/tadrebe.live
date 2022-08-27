@@ -176,16 +176,43 @@ class tadreblive_Public
 			$pcurrent_user = wp_get_current_user();
 			$user_id = $pcurrent_user->ID;
 			$token =  get_user_meta($user_id,  'cp_token', true);
+			#echo $token;
 			$content = new CPanel_Content;
 			$usecode = __('Join&nbsp;Session', 'tadreblive');
 			$topic_id = $args['topicid'];
 			$back= $content->bigbluebuttonbn($baseurl, $token, $topic_id);
-			$meeting_url = $back['url'];
-			$webcam = $back['webcam'];
-            $deskshare = $back['deskshare'];
-			$meeting_url = "'" . $meeting_url . "'";
-            $content = '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
-			$content .= '<p>';
+			
+			$opentxt = __('This&nbsp;Session&nbsp;Opening Time&nbsp;: ', 'tadreblive');
+			$closingtxt = __('This&nbsp;Session&nbsp;Closing Time&nbsp;: ', 'tadreblive');
+			$content = '';
+			if (isset($back['openingtime'])){
+				$openingtime = $back['openingtime'];
+				$content .= '<h4>'.$opentxt.' '.$openingtime.'</h4>';
+			}
+
+			
+
+			if (isset($back['closingtime'])){
+				$closingtime = $back['closingtime'];
+				$content .= '<h4>'.$closingtxt.' '.$closingtime.'</h4>';
+			}
+
+			if (isset($back['statusmessage'])){
+				$statusmessage = $back['statusmessage'];
+				$content .= '<h4>'.$statusmessage.'</h4>';
+			}
+			if (true == $back['canjoin']){
+				$meeting_url = $back['url'];
+				$meeting_url = "'" . $meeting_url . "'";
+				$content .= '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
+				$content .= '<p>';
+			}
+			$meeting_open = $back['openingtime'];
+			if (isset($back['webcam']) && isset($back['deskshare']) ){
+				$webcam = $back['webcam'];
+				$deskshare = $back['deskshare'];
+		          
+		
 			$content .= '<div class="td-video-wrapper">';
 			$content .= '<video autoplay="true" preload="auto" controls="true" class="td-v1" id="va">';
 			$content .= '<source src="'.$deskshare.'" type="video/mp4">';
@@ -194,6 +221,8 @@ class tadreblive_Public
 			$content .='<source src="'.$webcam.'" type="video/mp4">';
 			$content .='</video>';
 			$content .='</div>';
+			$content .='<div><h1>'.$meeting_open.'</h1></div>';
+			}
 			return $content;
 		}
 	}

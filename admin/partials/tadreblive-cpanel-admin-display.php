@@ -17,6 +17,7 @@
 <div class="wrap">
     <div>
         <h2>CPanel Settings</h2>
+
         <form method="POST" action="options.php">
             <?php
             settings_fields( 'cpcred' );
@@ -129,6 +130,60 @@
        
                 </div>
             </div>
+        </form>
+    </div>
+    <div>
+    <form method="POST" action="options.php">
+            <?php
+            settings_fields( 'bbbcred' );
+            do_settings_sections('bbbcred');
+            ?>
+               <table class="form-table" role="presentation">
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <label for="bbburl">BigBlueButton server URL</label>
+                        </th>
+                        <td>
+                            <input 
+                                name="bbburl" 
+                                value="<?php echo get_option('bbburl');?>"
+                                type="url"
+                                id="bbburl"
+                                aria-describedby="urlHelpInline"
+                                class="regular-text code disabled"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <label for="bbbsharedsecret">BigBlueButton shared secret</label>
+                        </th>
+                        <td>
+                            <input 
+                                name="bbbsharedsecret" 
+                                value="<?php echo get_option('bbbsharedsecret');?>"
+                                type="text"
+                                id="bbbsharedsecret"
+                                aria-describedby="urlHelpInline"
+                                class="regular-text code disabled"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                        </th>
+                        <td>
+                           <button type="submit" class="btn-sm">Save</button>
+                           <span class="response-box"></span>
+
+                        </td>
+                        
+                        
+                    </tr>
+                    <tr>
+                </tbody>
+               </table>
         </form>
     </div>
 </div>
