@@ -116,16 +116,12 @@ class tadreblive_Public
 			'ajax_nonce' => wp_create_nonce(action: 'enroll_user_to_cpanel_nonce'),
 
 		));
-		wp_localize_script($this->tadreblive, 'get_bigbluebuttonbn', array(
+		wp_localize_script($this->tadreblive, 'display_bigbluebuttonbn_meeting', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
-			'ajax_nonce' => wp_create_nonce(action: 'get_bigbluebuttonbn_nonce'),
+			'ajax_nonce' => wp_create_nonce(action: 'display_bigbluebuttonbn_meeting_nonce'),
 
 		));
-		wp_localize_script($this->tadreblive, 'bigbluebuttonbn', array(
-			'ajaxurl' => admin_url('admin-ajax.php'),
-			'ajax_nonce' => wp_create_nonce(action: 'bigbluebuttonbn_nonce'),
-
-		));
+	
 	}
 	public function tadreb_custom_block(){
 		wp_enqueue_script('palyer', plugin_dir_url(__FILE__) . 'js/player.js', array('jquery'), $this->version, false);
@@ -146,23 +142,23 @@ class tadreblive_Public
 
 	}
 
-	public function get_bigbluebuttonbn(){
-		$baseurl = get_option('cpurl');
+	/*public function get_bigbluebuttonbn(){
 		if ( is_user_logged_in() ) {
-			$pcurrent_user = wp_get_current_user();
-			$user_id = $pcurrent_user->ID;
-			$token =  get_user_meta($user_id,  'cp_token', true);
 			$content = new CPanel_Content;
 			$content = $content->bigbluebuttonbn_add();
-			#var_dump($content);
 			$response = json_encode($content);
 			echo $response;
 			die();
 			
 		}
 
-	}
+	}*/
+	public function bigbluebuttonbn_meeting($baseurl, $token, $topic_id){
+		$content = new CPanel_Content;
+		$content = $content->bigbluebuttonbn($baseurl, $token, $topic_id);
+		return $content;
 
+	}
 	public function display_bigbluebuttonbn_meeting($attr){
 		$baseurl = get_option('cpurl');
 		if ( is_user_logged_in() ) {
@@ -177,17 +173,16 @@ class tadreblive_Public
 			$user_id = $pcurrent_user->ID;
 			$token =  get_user_meta($user_id,  'cp_token', true);
 			#echo $token;
-			$content = new CPanel_Content;
 			$usecode = __('Join&nbsp;Session', 'tadreblive');
 			$topic_id = $args['topicid'];
-			$back= $content->bigbluebuttonbn($baseurl, $token, $topic_id);
+			$back= $this->bigbluebuttonbn_meeting($baseurl, $token, $topic_id);
 			
 			$opentxt = __('This&nbsp;Session&nbsp;Opening Time&nbsp;: ', 'tadreblive');
 			$closingtxt = __('This&nbsp;Session&nbsp;Closing Time&nbsp;: ', 'tadreblive');
 			$content = '';
 			if (isset($back['openingtime'])){
 				$openingtime = $back['openingtime'];
-				$content .= '<h4>'.$opentxt.' '.$openingtime.'</h4>';
+				$content .= '<h5>'.$opentxt.' '.$openingtime.'</h5>';
 			}
 
 			

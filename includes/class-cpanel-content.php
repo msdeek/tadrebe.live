@@ -32,7 +32,7 @@ class CPanel_Content
 {
 
     /**
-     * lerndash Post Type
+     * Get Post Type for Learndash to match moodle by courses->course, lessons->sections, topics->Modules
      *
      * @since    1.0.0
      */
@@ -54,7 +54,7 @@ class CPanel_Content
     }
 
     /**
-     * Cpanel Query
+     * Query Posts by meta key and values
      *
      * @since    1.0.0
      */
@@ -78,16 +78,20 @@ class CPanel_Content
     }
 
     /**
-     * Cpanel Cources
+     * Cpanel cources form moodle to assigen it to learndash courses
      *
      * @since    1.0.0
      */
-    public function get_cpanel_courses($baseurl, $token)
-    {
+
+    public function get_cpanel_courses($baseurl, $token){
         global $wpdb;
-        $post_type = $this->learndash_post_type('course');
-        $key = $post_type['key'];
-        $post_type = $post_type['post_type'];
+        
+        // Get Post Type 
+        //$post_type = $this->learndash_post_type('course');
+        //$key = $post_type['key'];
+        //$post_type = $post_type['post_type'];
+
+        // Moodle API to get Courses Josen File
         $method = 'GET';
         if (true == $token) {
             $body = array(
@@ -97,7 +101,7 @@ class CPanel_Content
             );
             $content = new CPanel_Services;
             $content = $content->register_moodle_services($baseurl, $method, $body);
-            #var_dump( $content);
+            
             foreach ((array)$content as $course) {
                 $fullname = $course->displayname;
                 $shortname = $course->shortname;
@@ -123,7 +127,6 @@ class CPanel_Content
                     add_post_meta($post_id, 'fullname', $fullname, true);
                     add_post_meta($post_id, 'cplang', $lang, true);
                 } else {
-
                     update_post_meta($course_id, 'fullname', $fullname);
                     update_post_meta($course_id, 'cplang', $lang);
                     $course_id =  wp_update_post(array(
@@ -275,6 +278,7 @@ class CPanel_Content
                             add_post_meta($topic_id, 'module_instance', $module_instance, true);
                             add_post_meta($topic_id, 'module_contextid', $module_contextid, true);
                             add_post_meta($topic_id,'module_url', $module_url, true);
+                            $this->bbb_add($topic_id);
                         } else {
                             $topic_id = wp_update_post(array(
                                 'ID' => $module_id,
@@ -294,6 +298,22 @@ class CPanel_Content
         }
            
     }
+    public function bbb_add($topic_id){
+        $topic_id = $topic_id;
+
+            $modname = get_post_meta($topic_id, 'modname', true);
+
+            if ('bigbluebuttonbn' == $modname) {
+                $short = '[bbb_meeting topicid=' . ("$topic_id") . ']';
+
+                $my_post = array(
+                    'ID'           => $topic_id,
+                    'post_content' =>  $short,
+                );
+                $my_post = wp_update_post($my_post);
+            }
+    }
+    
     public function bigbluebuttonbn_add()
     {
         $post_type = $this->learndash_post_type('topic');
@@ -309,8 +329,6 @@ class CPanel_Content
             $topic_id = $topic;
 
             $modname = get_post_meta($topic_id, 'modname', true);
-
-            $cmid = get_post_meta($topic_id, 'cpanel_module_id', true);
 
             if ('bigbluebuttonbn' == $modname) {
                 $short = '[bbb_meeting topicid=' . ("$topic_id") . ']';

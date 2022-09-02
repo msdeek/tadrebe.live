@@ -230,11 +230,10 @@ class tadreblive {
 		$this->loader->add_action( 'enqueue_block_editor_assets',$plugin_public,'tadreb_custom_block' );
 		#$this->loader->add_action( 'init', $plugin_public,   'get_bigbluebuttonbn' ) ;
 		#$this->loader->add_filter( 'locale', $plugin_public, 'chnag_loacal' );
-		$this->loader->add_action( 'wp_ajax_get_bigbluebuttonbn',$plugin_public,   'get_bigbluebuttonbn' ) ;
-		$this->loader->add_action( 'wp_ajax_nopriv_get_bigbluebuttonbn',$plugin_public,   'get_bigbluebuttonbn' ) ;
+		$this->loader->add_action( 'wp_ajax_display_bigbluebuttonbn_meeting',$plugin_public,   'display_bigbluebuttonbn_meeting' ) ;
+		$this->loader->add_action( 'wp_ajax_nopriv_display_bigbluebuttonbn_meeting',$plugin_public,   'display_bigbluebuttonbn_meeting' ) ;
 		$this->loader->add_shortcode('bbb_meeting', $plugin_public, 'display_bigbluebuttonbn_meeting');
-		$plugin_cpcontent= new tadreblive_Public( $this->get_tadreblive(), $this->get_version() );
-		
+	
 
 		$plugin_cpanel_user = new CPanelUsers( $this->get_tadreblive(), $this->get_version() );
 		
@@ -250,9 +249,8 @@ class tadreblive {
 		$this->loader->add_action('user_register', $plugin_manage_users, 'save_pw_to_meta_data');
 		$this->loader->add_action('profile_update', $plugin_manage_users, 'update_pw_to_meta_data');
 
-		$plugin_cpcontent = new CPanel_Content($this->get_tadreblive(), $this->get_version());
-		$this->loader->add_action( 'wp_ajax_bigbluebuttonbn',$plugin_cpcontent,   'bigbluebuttonbn' ) ;
-		$this->loader->add_action( 'wp_ajax_nopriv_bigbluebuttonbn',$plugin_cpcontent,   'bigbluebuttonbn' ) ;
+	
+		
 		
 
 	}
