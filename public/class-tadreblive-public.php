@@ -189,17 +189,17 @@ class tadreblive_Public
 
 			if (isset($back['closingtime'])){
 				$closingtime = $back['closingtime'];
-				$content .= '<h4>'.$closingtxt.' '.$closingtime.'</h4>';
+				$content .= '<h5>'.$closingtxt.' '.$closingtime.'</h5>';
 			}
 
 			if (isset($back['statusmessage'])){
 				$statusmessage = $back['statusmessage'];
-				$content .= '<h4>'.$statusmessage.'</h4>';
+				$content .= '<h5>'.$statusmessage.'</h5>';
 			}
 			if (true == $back['canjoin']){
 				$meeting_url = $back['url'];
 				$meeting_url = "'" . $meeting_url . "'";
-				$content .= '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
+				$content .= '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="window.open=' . $meeting_url . '" />';
 				$content .= '<p>';
 			}
 			$meeting_open = $back['openingtime'];
