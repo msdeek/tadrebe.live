@@ -199,7 +199,7 @@ class tadreblive_Public
 			if (true == $back['canjoin']){
 				$meeting_url = $back['url'];
 				$meeting_url = "'" . $meeting_url . "'";
-				$content .= '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="document.location.href=' . $meeting_url . '" />';
+				$content .= '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="window.open=' . $meeting_url . '" />';
 				$content .= '<p>';
 			}
 			$meeting_open = $back['openingtime'];
