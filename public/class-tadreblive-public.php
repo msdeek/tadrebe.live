@@ -180,6 +180,7 @@ class tadreblive_Public
 			$opentxt = __('This&nbsp;Session&nbsp;Opening Time&nbsp;: ', 'tadreblive');
 			$closingtxt = __('This&nbsp;Session&nbsp;Closing Time&nbsp;: ', 'tadreblive');
 			$content = '';
+			$content .= '<h4>تم إضافة علامة مائية على كافة مقاطع الصورة تحتوى على بيانات المستخدم إذا كنت لاترغب فى هذا يمكنك إلغاء حسابك</h4>';
 			if (isset($back['openingtime'])){
 				$openingtime = $back['openingtime'];
 				$content .= '<h5>'.$opentxt.' '.$openingtime.'</h5>';
