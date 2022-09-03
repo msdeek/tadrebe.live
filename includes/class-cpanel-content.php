@@ -403,13 +403,13 @@ class CPanel_Content
             $meeting['url'] =$meeting_url->join_url;
 
 
-            $service_url = 'https://lv1.tadreb.live/bigbluebutton/api/';
+            $service_url = 'https://r1.tadreb.live/bigbluebutton/api/';
             $callName = 'getRecordings';
             $queryString = array(
                 'meetingID' => $meetingid,
             );
             $parm = 'meetingID=' . urlencode($meetingid);
-            $sharedSecret = '06lksGdXVgfGf7hIEso7E4DwHZIPUjwCz41nDvkCI';
+            $sharedSecret = 'HySOJaZPCwVn2Z477zagp3Ut9VQkdl8FHhpQ535zmY';
             $chuksum = sha1($callName  . $parm . $sharedSecret);
 
             $arguments = array(
@@ -434,14 +434,14 @@ class CPanel_Content
                 if ( null == $recs['recordID']){
                     foreach ((array)$recs as $rec){
                         $recordid = $rec['recordID'];
-                        $meeting['webcam']='https://lv1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
-                        $meeting['deskshare'] = 'https://lv1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
+                        $meeting['webcam']='https://r1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
+                        $meeting['deskshare'] = 'https://r1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
                    
                     }
                 }else{
                         $recordid = $recs['recordID'];
-                        $meeting['webcam']='https://lv1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
-                        $meeting['deskshare'] = 'https://lv1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
+                        $meeting['webcam']='https://r1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
+                        $meeting['deskshare'] = 'https://r1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
                 }
             }
                   
