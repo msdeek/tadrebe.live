@@ -87,9 +87,9 @@ class CPanel_Content
         global $wpdb;
         
         // Get Post Type 
-        //$post_type = $this->learndash_post_type('course');
-        //$key = $post_type['key'];
-        //$post_type = $post_type['post_type'];
+        $post_type = $this->learndash_post_type('course');
+        $key = $post_type['key'];
+        $post_type = $post_type['post_type'];
 
         // Moodle API to get Courses Josen File
         $method = 'GET';
