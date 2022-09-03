@@ -436,12 +436,14 @@ class CPanel_Content
                         $recordid = $rec['recordID'];
                         $meeting['webcam']='https://r1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
                         $meeting['deskshare'] = 'https://r1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
+                        $meeting['rurl']= 'https://r1.tadreb.live/playback/presentation/2.3/'.$recordid;
                    
                     }
                 }else{
                         $recordid = $recs['recordID'];
                         $meeting['webcam']='https://r1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
                         $meeting['deskshare'] = 'https://r1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
+                        $meeting['rurl']= 'https://r1.tadreb.live/playback/presentation/2.3/'.$recordid;
                 }
             }
                   
