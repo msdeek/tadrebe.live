@@ -403,13 +403,13 @@ class CPanel_Content
             $meeting['url'] =$meeting_url->join_url;
 
 
-            $service_url = 'https://r1.tadreb.live/bigbluebutton/api/';
+            $service_url = 'https://v1.tadreb.live/bigbluebutton/api/';
             $callName = 'getRecordings';
             $queryString = array(
                 'meetingID' => $meetingid,
             );
             $parm = 'meetingID=' . urlencode($meetingid);
-            $sharedSecret = 'HySOJaZPCwVn2Z477zagp3Ut9VQkdl8FHhpQ535zmY';
+            $sharedSecret = 'Ldui1Eg7tCo97SPo4dT7vL1fvbhqAVMkfUBZS0GE1E';
             $chuksum = sha1($callName  . $parm . $sharedSecret);
 
             $arguments = array(
@@ -434,16 +434,16 @@ class CPanel_Content
                 if ( null == $recs['recordID']){
                     foreach ((array)$recs as $rec){
                         $recordid = $rec['recordID'];
-                        $meeting['webcam']='https://r1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
-                        $meeting['deskshare'] = 'https://r1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
-                        $meeting['rurl']= 'https://r1.tadreb.live/playback/presentation/2.3/'.$recordid;
+                        $meeting['webcam']='https://v1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
+                        $meeting['deskshare'] = 'https://v1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
+                        $meeting['rurl']= 'https://v1.tadreb.live/playback/presentation/2.3/'.$recordid;
                    
                     }
                 }else{
                         $recordid = $recs['recordID'];
-                        $meeting['webcam']='https://r1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
-                        $meeting['deskshare'] = 'https://r1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
-                        $meeting['rurl']= 'https://r1.tadreb.live/playback/presentation/2.3/'.$recordid;
+                        $meeting['webcam']='https://v1.tadreb.live/presentation/'.$recordid.'/video/webcams.mp4';
+                        $meeting['deskshare'] = 'https://v1.tadreb.live/presentation/'.$recordid.'/deskshare/deskshare.mp4';
+                        $meeting['rurl']= 'https://v1.tadreb.live/playback/presentation/2.3/'.$recordid;
                 }
             }
                   
