@@ -211,23 +211,16 @@ class tadreblive_Public
 				$deskshare = $back['deskshare'];
 				$rurl = $back['rurl'];
 		          
-			$content .='<iframe src="'.$rurl.'" width="100%" height="900px" marginheight="0" frameborder="0" border="0" scrolling="auto" onload="autoResize(this);"> </iframe>';
+			//$content .='<iframe src="'.$rurl.'" width="100%" height="900px" marginheight="0" frameborder="0" border="0" scrolling="auto" onload="autoResize(this);"> </iframe>';
 			$content .= '<div class="td-video-wrapper">';
-			/**$content .= '<video autoplay="true" preload="auto" controls="true" class="td-v1" id="va">';
+			$content .= '<video autoplay="true" preload="auto" controls="true" class="td-v1" id="va">';
 			$content .= '<source src="'.$deskshare.'" type="video/mp4">';
 			$content .='</video>';
 			$content .='<video autobuffer="true" autoplay="true" preload="auto" class="td-v2" id="vb"> ';
 			$content .='<source src="'.$webcam.'" type="video/mp4">';
 			$content .='</video>';
 			$content .='</div>';
-			$content .= '
-						<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-			<script type="text/javascript">
-			function autoResize(iframe) {
-				$(iframe).height($(iframe).contents().find("html").height());
-			}
-			</script>
-						';*/
+			
 			}
 			return $content;
 		}
