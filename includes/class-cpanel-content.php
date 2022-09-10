@@ -452,4 +452,8 @@ class CPanel_Content
         return $meeting;
        
     }
+
+    public function join_meeting($meetingid){
+        
+    }
 }
