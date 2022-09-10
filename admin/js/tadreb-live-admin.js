@@ -84,7 +84,23 @@
         action: "get_moodle_courses",
       },
     });
+
+    $.ajax({
+      method: "post",
+      url: get_moodle_allitems.ajaxurl,
+      timeout: 86400,
+      dataType: "json",
+      data: {
+        action: "get_moodle_allitems",
+      },
+    });
+
+
   });
+
+  
+
+  get_moodle_allitems
 
   $(document).ready(function () {
     $(document)

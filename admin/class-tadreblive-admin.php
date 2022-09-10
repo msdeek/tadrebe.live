@@ -113,6 +113,14 @@ class tadreblive_Admin {
 			'ajax_nonce' => wp_create_nonce( action:'get_moodle_courses_nonce' ),
 
 	));
+
+
+
+	wp_localize_script( $this->tadreblive, 'get_moodle_allitems', array( 
+		'ajaxurl' => admin_url('admin-ajax.php'),
+		'ajax_nonce' => wp_create_nonce( action:'get_moodle_allitems_nonce' ),
+
+));
 		
 	}
 

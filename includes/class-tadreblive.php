@@ -209,8 +209,9 @@ class tadreblive {
 		$this->loader->add_action( 'wp_ajax_get_moodle_courses',$plugin_cpanel_admin,   'get_moodle_courses' ) ;
 		$this->loader->add_action( 'wp_ajax_nopriv_get_moodle_courses',$plugin_cpanel_admin,   'get_moodle_courses' ) ;
 
+		$this->loader->add_action( 'wp_ajax_get_moodle_allitems',$plugin_cpanel_admin,   'get_moodle_allitems' ) ;
+		$this->loader->add_action( 'wp_ajax_nopriv_get_moodle_allitems',$plugin_cpanel_admin,   'get_moodle_allitems' ) ;
 		
-
 		
 	}
 

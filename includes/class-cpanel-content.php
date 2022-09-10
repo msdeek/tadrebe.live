@@ -279,7 +279,7 @@ class CPanel_Content
                             add_post_meta($topic_id, 'module_contextid', $module_contextid, true);
                             add_post_meta($topic_id,'module_url', $module_url, true);
                             $this->bbb_add($topic_id);
-                        } else {
+                        }else {
                             $topic_id = wp_update_post(array(
                                 'ID' => $module_id,
                                 'post_title' => $module_fullname,

@@ -137,9 +137,19 @@ class cpanel_Admin
 		#var_dump($token);
 		$content = new CPanel_Content;
 		$response['courses'] = $content->get_cpanel_courses($baseurl, $token);
-		$response['lessons'] = $content->get_cpanel_items($baseurl, $token);
+		
 		#$users = new CPanelUsers;
 		#$users_data = $users->core_user_create_users();
+		$response = json_encode($response);
+		echo $response;
+		die();
+	}
+
+	public function get_moodle_allitems(){
+		$baseurl = get_option('cpurl');
+		$token =  get_option('cptoken');
+		$content = new CPanel_Content;
+		$response['lessons'] = $content->get_cpanel_items($baseurl, $token);
 		$response = json_encode($response);
 		echo $response;
 		die();
