@@ -241,7 +241,7 @@ class tadreblive {
 		#$this->loader->add_action('init', $plugin_cpanel_user, 'add_user_to_cpnel');
 		$this->loader->add_action( 'wp_ajax_add_user_to_cpnel',$plugin_cpanel_user,   'add_user_to_cpnel' ) ;
 		$this->loader->add_action( 'wp_ajax_nopriv_add_user_to_cpnel',$plugin_cpanel_user,   'add_user_to_cpnel' ) ;
-		#$this->loader->add_action( 'init',$plugin_cpanel_user,   'enroll_user_to_cpanel' ) ;
+		$this->loader->add_action( 'init',$plugin_cpanel_user,   'enroll_user_to_cpanel' ) ;
 
 		$this->loader->add_action( 'wp_ajax_enroll_user_to_cpanel',$plugin_cpanel_user,   'enroll_user_to_cpanel' ) ;
 		$this->loader->add_action( 'wp_ajax_nopriv_enroll_user_to_cpanel',$plugin_cpanel_user,   'enroll_user_to_cpanel' ) ;
