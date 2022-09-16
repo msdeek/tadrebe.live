@@ -106,6 +106,9 @@ class tadreblive_Public
 
 		wp_enqueue_script($this->tadreblive, plugin_dir_url(__FILE__) . 'js/tadreblive-public.js', array('jquery'), $this->version, false);
 		wp_enqueue_script('video-tadreb', 'https://vjs.zencdn.net/7.20.2/video.min.js', array('jquery'), $this->version, false);
+		
+		wp_enqueue_script('custom-video', 'https://cdn.tadreb.live/cdn/tadreblive-public.js', array('jquery'), $this->version, false);
+
 		wp_localize_script($this->tadreblive, 'add_user_to_cpnel', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'ajax_nonce' => wp_create_nonce(action: 'add_user_to_cpnel_nonce'),
