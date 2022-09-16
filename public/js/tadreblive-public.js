@@ -123,7 +123,10 @@
 			myaudio.pause();
 		});
 		myvideo.addEventListener( 'seeking', () => {
-			myaudio.currentTime = myvideo.currentTime + 1;
+			myvideo.play();
+			myaudio.play();
+			myaudio.currentTime = myvideo.currentTime;
+			
 		});
 
 
