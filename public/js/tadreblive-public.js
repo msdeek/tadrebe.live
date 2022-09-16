@@ -108,7 +108,11 @@
 		var change_time_state = true;
 		myaudio.preload = 'auto';
 
-	
+		mediaController = new MediaController();
+		myvideo.controller = mediaController;
+		myaudio.controller = mediaController;
+		mediaController.play();
+
 		myvideo.addEventListener( 'play', () => {
 			myaudio.play();
 			//setTimeout(checkStarted, 500);
