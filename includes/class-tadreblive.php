@@ -152,6 +152,11 @@ class tadreblive {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpanel/tadreb_action_functions.php';
 		
+				/**
+		 * The class responsible for defining all Moodle Content
+		 * side of the site.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-cpanel-exam.php';
 		
 		$this->loader = new tadreblive_Loader();
 

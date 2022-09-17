@@ -279,7 +279,7 @@ class CPanel_Content
                             add_post_meta($topic_id, 'module_contextid', $module_contextid, true);
                             add_post_meta($topic_id,'module_url', $module_url, true);
                             $this->bbb_add($topic_id);
-                        }else {
+                        }/**else {
                             $topic_id = wp_update_post(array(
                                 'ID' => $module_id,
                                 'post_title' => $module_fullname,
@@ -287,11 +287,11 @@ class CPanel_Content
                                 'post_author' => $post_author,
                                 'menu_order' => $module_section++,
                             ));
-                            update_post_meta($topic_id, 'modname', $modname);
-                            update_post_meta($topic_id, 'module_instance', $module_instance);
-                            update_post_meta($topic_id, 'module_contextid', $module_contextid);
-                            update_post_meta($topic_id,'module_url', $module_url);
-                        }
+                            //update_post_meta($topic_id, 'modname', $modname);
+                            //update_post_meta($topic_id, 'module_instance', $module_instance);
+                            //update_post_meta($topic_id, 'module_contextid', $module_contextid);
+                            //update_post_meta($topic_id,'module_url', $module_url);
+                        }*/
                     }
                 }
             }
@@ -309,6 +309,18 @@ class CPanel_Content
                 $my_post = array(
                     'ID'           => $topic_id,
                     'post_content' =>  $short,
+                );
+                $my_post = wp_update_post($my_post);
+            }elseif ('quiz' == $modname){
+                $usecode = 'إبدا الإختبار';
+                $cmid = get_post_meta($topic_id, 'module_url', true);
+                $meeting_url = "'" . $cmid . "'";
+				$targert = "'_blank'";
+				$content .= '<input type="button" value="'.("$usecode").'" class="homebutton" id="joinsession" onClick="window.open(' . $meeting_url . ',' . $targert . ');" />';
+				$content .= '<p>';
+                $my_post = array(
+                    'ID'           => $topic_id,
+                    'post_content' =>  $content,
                 );
                 $my_post = wp_update_post($my_post);
             }
