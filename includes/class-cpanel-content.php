@@ -213,7 +213,7 @@ class CPanel_Content
                         add_post_meta($lesson_id, 'lesson_summaryformat', $lesson_summaryformat, true);
                         add_post_meta($lesson_id, 'lesson_hiddenbynumsections', $lesson_hiddenbynumsections, true);
                         add_post_meta($lesson_id, 'lesson_uservisible', $lesson_uservisible, true);
-                    }else{
+                    }/**else{
                         $lesson_id = wp_update_post(array(
                             'ID' => $lesson_id,
                             'post_title' => $lesson_fullname,
@@ -225,7 +225,7 @@ class CPanel_Content
                         update_post_meta($lesson_id, 'lesson_summaryformat', $lesson_summaryformat);
                         update_post_meta($lesson_id, 'lesson_hiddenbynumsections', $lesson_hiddenbynumsections);
                         update_post_meta($lesson_id, 'lesson_uservisible', $lesson_uservisible);
-                    }
+                    }*/
 
 
                     $module_section= 0;
