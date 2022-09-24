@@ -107,22 +107,24 @@
 
 		rangeProgress.addEventListener('input', ()=>{
 			myvideo.currentTime = (myvideo.duration / 100 ) * rangeProgress.value
-			myaudio.currentTime = (myvideo.duration / 100 ) * rangeProgress.value
+			//myaudio.currentTime = (myvideo.duration / 100 ) * rangeProgress.value
 			isPlay()
 	   })
 
-	   myvideo.addEventListener( 'seeking', () => {
-		myvideo.play();
-		myaudio.play();
-		myaudio.currentTime = myvideo.currentTime;
-		
-	});
+	
 	   rangeProgress.addEventListener('mousemove', (e)=>{
 		let time =  (myvideo.duration / 100 ) * (e.offsetX / e.target.clientWidth) *  parseInt(e.target.getAttribute('max'), 10).toFixed(2)
 		timeHover.style.display= 'inline'
 		timeHover.textContent = convertTime(Math.round(time))
 		timeHover.style.left = (e.offsetX / e.target.clientWidth) * 100 + '%'
 	})
+
+	myvideo.addEventListener( 'seeking', () => {
+		myvideo.play();
+		myaudio.play();
+		myaudio.currentTime = myvideo.currentTime;
+		
+	});
 	
 	rangeProgress.addEventListener('mouseout', (e)=>{
 		timeHover.style.display= 'none'
