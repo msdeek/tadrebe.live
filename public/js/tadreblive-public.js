@@ -255,6 +255,7 @@
         zoomIn.classList.remove('active')
         zoomOut.classList.add('active')
         wrapperPlayer.requestFullscreen()
+		wrapperPlayer.documentElement.webkitRequestFullscreen();
         fullscreen.setAttribute('data-zoom', 'true')
     }
 	})
@@ -270,6 +271,7 @@
         zoomIn.classList.remove('active')
         zoomOut.classList.add('active')
         wrapperPlayer.requestFullscreen()
+		wrapperPlayer.documentElement.webkitRequestFullscreen();
         fullscreen.setAttribute('data-zoom', 'true')
     }
 	})
