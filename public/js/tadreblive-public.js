@@ -77,7 +77,8 @@
 	
 		return "unknown";
 	} 
-	$(function ()  {
+	$(document).ready(function () {
+		$(document)
 		
 	
 		
