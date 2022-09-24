@@ -114,4 +114,39 @@ class tadreb_action_functions{
 		
 		
 	}
+
+	public function update_username(){
+		global $wpdb;
+        $cre = new CPanelUsers;
+		$pcurrent_user = wp_get_current_user();
+		$user_id = $pcurrent_user->ID;
+		$username = $pcurrent_user->user_login;
+		$username = '0'.$username;
+		$cp_cr = $cre->get_cp_settings();
+		$baseurl = $cp_cr['cpurl'];
+		$cptoken = $cp_cr['cptoken'];
+		$method = 'POST';
+		//echo '-------------------------------'.$user_id;
+		$usernamemoodle = $wpdb->get_var( // @codingStandardsIgnoreLine
+			$wpdb->prepare(
+				"SELECT meta_value
+				FROM {$wpdb->prefix}usermeta
+				WHERE meta_key = 'cp_user_id'
+				AND user_id = %s",
+				$user_id
+			)
+		);
+		//echo '-------------------------------'.$usernamemoodle;
+		if ( false != $usernamemoodle ){
+			$add_user = new CPanel_Services;
+			$body = array(
+				'wstoken' => $cptoken,
+				'wsfunction' => 'core_user_update_users',
+				'moodlewsrestformat' => 'json',
+				'users[0][id]' => $usernamemoodle,
+				'users[0][username]' => $username
+			);
+			$add_user = $add_user->register_moodle_services($baseurl, $method, $body);
+		}
+	}
 }

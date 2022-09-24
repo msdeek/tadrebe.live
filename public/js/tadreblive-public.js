@@ -79,33 +79,43 @@
 	} 
 	  $(document).ready(function () {
 		$(document)
-		function getOS() {
-			var userAgent = window.navigator.userAgent,
-				platform = window.navigator?.userAgentData?.platform || window.navigator.platform,
-				macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-				windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-				iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-				os = null;
-		  
-			if (macosPlatforms.indexOf(platform) !== -1) {
-			  os = 'Mac OS';
-			} else if (iosPlatforms.indexOf(platform) !== -1) {
-			  os = 'iOS';
-			} else if (windowsPlatforms.indexOf(platform) !== -1) {
-			  os = 'Windows';
-			} else if (/Android/.test(userAgent)) {
-			  os = 'Android';
-			} else if (/Linux/.test(platform)) {
-			  os = 'Linux';
-			}
-		  
-			return os;
-		  }
+	
 		
-		var os = getOS();
-		/**var myvideo = document.getElementById("va");
+	
+
+
+		var myvideo = document.getElementById("va");
 		var myaudio = document.getElementById("vb");
 		var change_time_state = true;
+		var rangeProgress = document.querySelector('.range_progress');
+		var timeHover = document.querySelector('.time_hover');
+		var current = document.querySelector('.current')
+		var duration = document.querySelector('.duration')
+
+		myvideo.addEventListener('timeupdate', ()=>{
+			const  VP = (myvideo.currentTime / myvideo.duration) * 100
+			rangeProgress.style.setProperty('--seek-before-width', `${VP}%`);
+			rangeProgress.value = VP
+			current.textContent =  convertTime(Math.round(myvideo.currentTime))
+			duration.textContent =  convertTime(Math.round(myvideo.duration))
+		})
+
+		rangeProgress.addEventListener('input', ()=>{
+			myvideo.currentTime = (myvideo.duration / 100 ) * rangeProgress.value
+			isPlay()
+	   })
+	   rangeProgress.addEventListener('mousemove', (e)=>{
+		let time =  (video.duration / 100 ) * (e.offsetX / e.target.clientWidth) *  parseInt(e.target.getAttribute('max'), 10).toFixed(2)
+		timeHover.style.display= 'inline'
+		timeHover.textContent = convertTime(Math.round(time))
+		timeHover.style.left = (e.offsetX / e.target.clientWidth) * 100 + '%'
+	})
+	
+	rangeProgress.addEventListener('mouseout', (e)=>{
+		timeHover.style.display= 'none'
+	})
+
+
 		myaudio.preload = 'auto';
 		
 
@@ -127,7 +137,7 @@
 			myaudio.play();
 			myaudio.currentTime = myvideo.currentTime;
 			
-		});*/
+		});
 
 
 		/*myvideo.onplay  = function() { 
