@@ -276,7 +276,7 @@
 		$(document)
 		var myvideoa = document.getElementById("va");
 		var myaudiob = document.getElementById("vb");
-		myaudio.preload = 'auto';
+		myaudiob.preload = 'auto';
 		
 
 		myvideoa.addEventListener( 'play', () => {
