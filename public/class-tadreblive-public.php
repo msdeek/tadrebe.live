@@ -219,10 +219,10 @@ class tadreblive_Public
 			
 			
 			$content .= '<div class="td-video-wrapper">';
-			$content .= '<video autoplay="true" preload="auto" controls="false"  autobuffer="true" playsinline class="td-v1" id="vabb">';
+			$content .= '<video autoplay="true" preload="auto"   autobuffer="true" playsinline class="td-v1" id="vabb">';
 			$content .= '<source src="'.$deskshare.'" type="video/mp4">';
 			$content .='</video>';
-			$content .='<video  autobuffer="true" autoplay="true" preload="auto"  playsinline class="td-v2" id="vbbb"> ';
+			$content .='<video  autobuffer="true" autoplay="true" preload="auto"    playsinline class="td-v2" id="vbbb"> ';
 			$content .='<source src="'.$webcam.'" type="video/mp4">';
 			$content .='</video>';
 			$content .='</div>';
