@@ -115,6 +115,13 @@
 			myaudio.currentTime = (myvideo.duration / 100 ) * rangeProgress.value
 			isPlay()
 	   })
+
+	   myvideo.addEventListener( 'seeking', () => {
+		myvideo.play();
+		myaudio.play();
+		myaudio.currentTime = myvideo.currentTime;
+		
+	});
 	   rangeProgress.addEventListener('mousemove', (e)=>{
 		let time =  (myvideo.duration / 100 ) * (e.offsetX / e.target.clientWidth) *  parseInt(e.target.getAttribute('max'), 10).toFixed(2)
 		timeHover.style.display= 'inline'
@@ -287,7 +294,7 @@
 		myvideoa.addEventListener( 'pause', () => {
 			myaudiob.pause();
 		});
-		myvideo.addEventListener( 'seeking', () => {
+		myvideoa.addEventListener( 'seeking', () => {
 			myvideoa.play();
 			myaudiob.play();
 			myaudiob.currentTime = myvideoa.currentTime;
