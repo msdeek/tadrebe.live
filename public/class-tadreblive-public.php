@@ -219,10 +219,10 @@ class tadreblive_Public
 			
 			
 			$content .= '<div class="td-video-wrapper">';
-			$content .= '<video autoplay="true" preload="auto"  class="td-v1" id="va">';
+			$content .= '<video autoplay="true" preload="auto"  class="td-v1" id="vabb">';
 			$content .= '<source src="'.$deskshare.'" type="video/mp4">';
 			$content .='</video>';
-			$content .='<video autobuffer="true" autoplay="true" preload="auto" class="td-v2" id="vb"> ';
+			$content .='<video autobuffer="true" autoplay="true" preload="auto" class="td-v2" id="vbbb"> ';
 			$content .='<source src="'.$webcam.'" type="video/mp4">';
 			$content .='</video>';
 			$content .='</div>';
@@ -239,8 +239,8 @@ class tadreblive_Public
 			<div class="btn_player">
                 <div class="side_right">
                     <div class="play_pause" data-play="false" >
-                        <svg class="play active"  onclick="isPlayin()" xmlns="http://www.w3.org/2000/svg"  height="100%" version="1.1" viewBox="0 0 36 36" width="100%"><use class="ytp-svg-shadow" ></use><path class="ytp-svg-fill" d="M 12,26 18.5,22 18.5,14 12,10 z M 18.5,22 25,18 25,18 18.5,14 z" id="ytp-id-60"></path></svg>
-                        <svg class="pause " onclick="isPlayin()"  xmlns="http://www.w3.org/2000/svg" height="100%" version="1.1" viewBox="0 0 36 36" width="100%"><use class="ytp-svg-shadow" ></use><path class="ytp-svg-fill" d="M 12,26 16,26 16,10 12,10 z M 21,26 25,26 25,10 21,10 z" id="ytp-id-48"></path></svg>
+                        <svg class="play active"   xmlns="http://www.w3.org/2000/svg"  height="100%" version="1.1" viewBox="0 0 36 36" width="100%"><use class="ytp-svg-shadow" ></use><path class="ytp-svg-fill" d="M 12,26 18.5,22 18.5,14 12,10 z M 18.5,22 25,18 25,18 18.5,14 z" id="ytp-id-60"></path></svg>
+                        <svg class="pause "  xmlns="http://www.w3.org/2000/svg" height="100%" version="1.1" viewBox="0 0 36 36" width="100%"><use class="ytp-svg-shadow" ></use><path class="ytp-svg-fill" d="M 12,26 16,26 16,10 12,10 z M 21,26 25,26 25,10 21,10 z" id="ytp-id-48"></path></svg>
                     </div>
                     <div class="next_video">
                         <svg xmlns="http://www.w3.org/2000/svg" height="100%" version="1.1" viewBox="0 0 36 36" width="100%"><use class="ytp-svg-shadow" ></use><path class="ytp-svg-fill" d="M 12,24 20.5,18 12,12 V 24 z M 22,12 v 12 h 2 V 12 h -2 z" id="ytp-id-12"></path></svg>

@@ -77,20 +77,30 @@
 	
 		return "unknown";
 	} 
-	  $(document).ready(function () {
-		$(document)
+	$(function ()  {
+		
 	
 		
 	
 
 
-		var myvideo = document.getElementById("va");
-		var myaudio = document.getElementById("vb");
-		var change_time_state = true;
-		var rangeProgress = document.querySelector('.range_progress');
-		var timeHover = document.querySelector('.time_hover');
-		var current = document.querySelector('.current')
-		var duration = document.querySelector('.duration')
+		var myvideo = document.getElementById("vabb");
+		var myaudio = document.getElementById("vbbb");
+		const wrapperPlayer = document.querySelector('.td-video-wrapper')
+		const fullscreen = document.querySelector('.fullscreen')
+		const playPause = document.querySelector('.play_pause')
+		const play = document.querySelector('.play')
+		const pause = document.querySelector('.pause')
+		const rangeProgress = document.querySelector('.range_progress')
+		const volume = document.querySelector('.volume')
+		const halfVolume = document.querySelector('.half_volume')
+		const mute = document.querySelector('.mute')
+		const rangeVolume = document.querySelector('.range_volume')
+		const zoomIn = document.querySelector('.zoom_in')
+		const zoomOut = document.querySelector('.zoom_out')
+		const current = document.querySelector('.current')
+		const duration = document.querySelector('.duration')
+		const timeHover = document.querySelector('.time_hover')
 
 		myvideo.addEventListener('timeupdate', ()=>{
 			const  VP = (myvideo.currentTime / myvideo.duration) * 100
@@ -102,10 +112,11 @@
 
 		rangeProgress.addEventListener('input', ()=>{
 			myvideo.currentTime = (myvideo.duration / 100 ) * rangeProgress.value
+			myaudio.currentTime = (myvideo.duration / 100 ) * rangeProgress.value
 			isPlay()
 	   })
 	   rangeProgress.addEventListener('mousemove', (e)=>{
-		let time =  (video.duration / 100 ) * (e.offsetX / e.target.clientWidth) *  parseInt(e.target.getAttribute('max'), 10).toFixed(2)
+		let time =  (myvideo.duration / 100 ) * (e.offsetX / e.target.clientWidth) *  parseInt(e.target.getAttribute('max'), 10).toFixed(2)
 		timeHover.style.display= 'inline'
 		timeHover.textContent = convertTime(Math.round(time))
 		timeHover.style.left = (e.offsetX / e.target.clientWidth) * 100 + '%'
@@ -115,6 +126,50 @@
 		timeHover.style.display= 'none'
 	})
 
+	function isPlay(){
+		pause.classList.add('active')
+		play.classList.remove('active')
+		myvideo.play()
+		myaudio.play()
+		playPause.setAttribute('data-play', 'true')
+	}
+
+	playPause.addEventListener('click', (e)=>{
+		let isPlay = playPause.getAttribute('data-play')
+		if(isPlay === 'true'){
+			play.classList.add('active')
+			pause.classList.remove('active')
+			playPause.setAttribute('data-play', 'false')
+			myvideo.pause()
+			myaudio.pause()
+		} else{
+			pause.classList.add('active')
+			play.classList.remove('active')
+			playPause.setAttribute('data-play', 'true')
+			myvideo.play()
+			myaudio.play()
+		}
+	})
+
+	play.addEventListener('click', ()=>{
+	
+			myvideo.play()
+			myaudio.play()
+		
+	})
+
+	pause.addEventListener('click', (e)=>{
+		myvideo.pause()
+			myaudio.pause()
+	})
+
+	const convertTime = (seconds) => {
+		var min = Math.floor(seconds / 60);
+		var sec = seconds % 60;
+		min = (min < 10) ? "0" + min : min;
+		sec = (sec < 10) ? "0" + sec : sec;
+		return  min + ":" + sec
+	}
 
 		myaudio.preload = 'auto';
 		
