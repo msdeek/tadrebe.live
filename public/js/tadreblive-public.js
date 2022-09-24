@@ -299,7 +299,7 @@
 		myvideoa.addEventListener( 'seeking', () => {
 			myvideoa.play();
 			myaudiob.play();
-			myaudiob.currentTime = myvideoa.currentTime;
+			myaudiob.currentTime = myvideoa.currentTime - 1;
 			
 		});
 
