@@ -174,6 +174,7 @@ class tadreblive_Public
 			), $attr );
 			$pcurrent_user = wp_get_current_user();
 			$user_id = $pcurrent_user->ID;
+			$username = $pcurrent_user->user_login;
 			$token =  get_user_meta($user_id,  'cp_token', true);
 			#echo $token;
 			$usecode = __('Join&nbsp;Session', 'tadreblive');
@@ -225,6 +226,7 @@ class tadreblive_Public
 			$content .='<video  autobuffer="true" autoplay="true" preload="auto"    playsinline class="td-v2" id="vbbb"> ';
 			$content .='<source src="'.$webcam.'" type="video/mp4">';
 			$content .='</video>';
+			$content .='<div class="td-user"><h5>'.$username.'</h5></div>';
 			$content .='</div>';
 			$content .='
 			<div class="bar_player">

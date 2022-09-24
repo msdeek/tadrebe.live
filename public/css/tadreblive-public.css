@@ -28,6 +28,14 @@ overflow: hidden;
     border-radius: 5px;
   
  }
+ .td-user{
+   position: -webkit-inherit;
+   position: inherit;
+   width: 20%;
+   
+   border-radius: 5px;
+ 
+}
 
 
  .bar_player{
