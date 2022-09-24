@@ -171,26 +171,132 @@
 		return  min + ":" + sec
 	}
 
+	
+	function isMute(e){
+		let isMute = e.getAttribute('data-mute')
+		if(isMute === 'true'){
+			e.setAttribute('data-mute', 'false')
+			volume.classList.add('active')
+			halfVolume.classList.remove('active')
+			mute.classList.remove('active')
+			myaudio.setAttribute('muted', '')
+			myaudio.volume = rangeVolume.value
+		}else{
+			e.setAttribute('data-mute', 'true')
+			volume.classList.remove('active')
+			halfVolume.classList.remove('active')
+			mute.classList.add('active')
+			myaudio.volume = 0
+		}
+	}
+
+	volume.addEventListener('click', ()=>{
+		let isMute = volume.getAttribute('data-mute')
+		if(isMute === 'true'){
+			volume.setAttribute('data-mute', 'false')
+			volume.classList.add('active')
+			halfVolume.classList.remove('active')
+			mute.classList.remove('active')
+			myaudio.setAttribute('muted', '')
+			myaudio.volume = rangeVolume.value
+		}else{
+			volume.setAttribute('data-mute', 'true')
+			volume.classList.remove('active')
+			halfVolume.classList.remove('active')
+			mute.classList.add('active')
+			myaudio.volume = 0
+		}
+
+	})
+
+	mute.addEventListener('click', ()=>{
+		let isMute = mute.getAttribute('data-mute')
+		if(isMute === 'true'){
+			mute.setAttribute('data-mute', 'false')
+			volume.classList.add('active')
+			halfVolume.classList.remove('active')
+			mute.classList.remove('active')
+			myaudio.setAttribute('muted', '')
+			myaudio.volume = rangeVolume.value
+		}else{
+			mute.setAttribute('data-mute', 'true')
+			volume.classList.remove('active')
+			halfVolume.classList.remove('active')
+			mute.classList.add('active')
+			myaudio.volume = 0
+		}
+
+	})
+
+	rangeVolume.addEventListener('click', ()=>{
+		let isMute = rangeVolume.getAttribute('data-mute')
+		if(isMute === 'true'){
+			rangeVolume.setAttribute('data-mute', 'false')
+			volume.classList.add('active')
+			halfVolume.classList.remove('active')
+			mute.classList.remove('active')
+			myaudio.setAttribute('muted', '')
+			myaudio.volume = rangeVolume.value
+		}else{
+			rangeVolume.setAttribute('data-mute', 'true')
+			volume.classList.remove('active')
+			halfVolume.classList.remove('active')
+			mute.classList.add('active')
+			myaudio.volume = 0
+		}
+	})
+
+	zoomIn.addEventListener('click', ()=>{
+		let zoom = fullscreen.getAttribute('data-zoom')
+    if(zoom === 'true'){
+        zoomIn.classList.add('active')
+        zoomOut.classList.remove('active')
+        fullscreen.setAttribute('data-zoom', 'false')
+        document.exitFullscreen()
+    } else{
+        zoomIn.classList.remove('active')
+        zoomOut.classList.add('active')
+        wrapperPlayer.requestFullscreen()
+        fullscreen.setAttribute('data-zoom', 'true')
+    }
+	})
+
+	zoomOut.addEventListener('click', ()=>{
+		let zoom = fullscreen.getAttribute('data-zoom')
+    if(zoom === 'true'){
+        zoomIn.classList.add('active')
+        zoomOut.classList.remove('active')
+        fullscreen.setAttribute('data-zoom', 'false')
+        document.exitFullscreen()
+    } else{
+        zoomIn.classList.remove('active')
+        zoomOut.classList.add('active')
+        wrapperPlayer.requestFullscreen()
+        fullscreen.setAttribute('data-zoom', 'true')
+    }
+	})
+		var myvideoa = document.getElementById("va");
+		var myaudiob = document.getElementById("vb");
 		myaudio.preload = 'auto';
 		
 
-		myvideo.addEventListener( 'play', () => {
-			myaudio.play();
+		myvideoa.addEventListener( 'play', () => {
+			myaudiob.play();
 			//setTimeout(checkStarted, 500);
 		});
 
-		myvideo.addEventListener( 'canplay', () => {
-			myaudio.play();
+		myvideoa.addEventListener( 'canplay', () => {
+			myaudiob.play();
 			//setTimeout(checkStarted, 500);
 		});
 
-		myvideo.addEventListener( 'pause', () => {
-			myaudio.pause();
+		myvideoa.addEventListener( 'pause', () => {
+			myaudiob.pause();
 		});
 		myvideo.addEventListener( 'seeking', () => {
-			myvideo.play();
-			myaudio.play();
-			myaudio.currentTime = myvideo.currentTime;
+			myvideoa.play();
+			myaudiob.play();
+			myaudiob.currentTime = myvideoa.currentTime;
 			
 		});
 
