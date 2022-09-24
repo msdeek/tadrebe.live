@@ -223,7 +223,7 @@ class tadreblive_Public
 			$content .= '<video autoplay="true" preload="auto"   autobuffer="true" playsinline class="td-v1" id="vabb">';
 			$content .= '<source src="'.$deskshare.'" type="video/mp4">';
 			$content .='</video>';
-			$content .='<div class="overlayText"><p id="topText">'.$username.'</p></div>';
+			$content .='<div id="overlayText"><p id="topText">'.$username.'</p></div>';
 			$content .='<video  autobuffer="true" autoplay="true" preload="auto"    playsinline class="td-v2" id="vbbb"> ';
 			$content .='<source src="'.$webcam.'" type="video/mp4">';
 			$content .='</video>';

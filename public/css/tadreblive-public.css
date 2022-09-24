@@ -24,9 +24,9 @@ overflow: hidden;
     position: -webkit-inherit;
     position: inherit;
     width: 20%;
-    padding-top: 39.5%;
+    padding-top: 35%;
     border-radius: 5px;
-    z-index: 10;
+    z-index: 2;
   
  }
  .td-user{
@@ -38,14 +38,14 @@ overflow: hidden;
  
 }
 #overlayText {
-   position:absolute;
+   position:relative;
     top:30%;
     left:20%;
     z-index:1;
   }
   
   #topText {
-    color: white;
+    color: red;
     font-size: 20px;
     align-self: center;
   }
