@@ -237,12 +237,6 @@
 			mute.classList.remove('active')
 			myaudio.setAttribute('muted', '')
 			myaudio.volume = rangeVolume.value
-		}else{
-			rangeVolume.setAttribute('data-mute', 'true')
-			volume.classList.remove('active')
-			halfVolume.classList.remove('active')
-			mute.classList.add('active')
-			myaudio.volume = 0
 		}
 	})
 
