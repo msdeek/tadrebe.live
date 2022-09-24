@@ -24,7 +24,7 @@ overflow: hidden;
     position: -webkit-inherit;
     position: inherit;
     width: 20%;
-    padding-top: 35%;
+    padding-top: 34%;
     border-radius: 5px;
     z-index: 2;
   
@@ -46,7 +46,7 @@ overflow: hidden;
   
   #topText {
     color: red;
-    font-size: 20px;
+    font-size: 10px;
     align-self: center;
   }
 
