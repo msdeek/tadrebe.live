@@ -37,7 +37,18 @@ overflow: hidden;
    border-radius: 5px;
  
 }
-
+#overlayText {
+   position:absolute;
+    top:30%;
+    left:20%;
+    z-index:1;
+  }
+  
+  #topText {
+    color: white;
+    font-size: 20px;
+    align-self: center;
+  }
 
  .bar_player{
    background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));
