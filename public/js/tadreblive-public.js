@@ -79,13 +79,7 @@
 	} 
 	$(document).ready(function () {
 		$(document)
-		
-	
-		
-	
-
-
-		var myvideo = document.getElementById("vabb");
+	    var myvideo = document.getElementById("vabb");
 		var myaudio = document.getElementById("vbbb");
 		const wrapperPlayer = document.querySelector('.td-video-wrapper')
 		const fullscreen = document.querySelector('.fullscreen')
@@ -277,6 +271,9 @@
         fullscreen.setAttribute('data-zoom', 'true')
     }
 	})
+});
+	$(document).ready(function () {
+		$(document)
 		var myvideoa = document.getElementById("va");
 		var myaudiob = document.getElementById("vb");
 		myaudio.preload = 'auto';
