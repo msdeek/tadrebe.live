@@ -112,7 +112,7 @@
 
 		rangeProgress.addEventListener('input', ()=>{
 			myvideo.currentTime = (myvideo.duration / 100 ) * rangeProgress.value
-			myaudio.currentTime = (myvideo.duration / 100 ) * rangeProgress.value
+			
 			isPlay()
 	   })
 	   rangeProgress.addEventListener('mousemove', (e)=>{
