@@ -256,6 +256,7 @@
         zoomOut.classList.add('active')
         wrapperPlayer.requestFullscreen()
 		wrapperPlayer.documentElement.webkitRequestFullscreen()
+
         fullscreen.setAttribute('data-zoom', 'true')
     }
 	})
@@ -272,6 +273,7 @@
         zoomOut.classList.add('active')
         wrapperPlayer.requestFullscreen()
 		wrapperPlayer.documentElement.webkitRequestFullscreen()
+		myvideo.webkitEnterFullscreen()
         fullscreen.setAttribute('data-zoom', 'true')
     }
 	})
