@@ -215,21 +215,22 @@ class tadreblive_Public
 				$deskshare = $back['deskshare'];
 				$rurl = $back['rurl'];
 		          
-			//$content .='<iframe src="'.$rurl.'" width="100%" height="900px" marginheight="0" frameborder="0" border="0" scrolling="auto" onload="autoResize(this);"> </iframe>';
 			
 			
 			
 			$content .= '<div class="td-video-wrapper">';
-			$content .= '<video autoplay="true" preload="auto"   autobuffer="true" playsinline class="td-v1" id="vabb">';
-			$content .= '<source src="'.$deskshare.'" type="video/mp4">';
-			$content .='</video>';
-			$content .='<div id="overlayText"><p id="topText">'.$username.'</p></div>';
-			$content .='<video  autobuffer="true" autoplay="true" preload="auto"    playsinline class="td-v2" id="vbbb"> ';
-			$content .='<source src="'.$webcam.'" type="video/mp4">';
-			$content .='</video>';
+			$content .='<iframe src="'.$rurl.'" width="100%" height="500px" marginheight="0" frameborder="0" border="0" scrolling="auto" onload="autoResize(this);"> </iframe>';
+
+		//	$content .= '<video autoplay="true" preload="auto"   autobuffer="true" playsinline class="td-v1" id="vabb">';
+		//	$content .= '<source src="'.$deskshare.'" type="video/mp4">';
+		//	$content .='</video>';
+		//	$content .='<div id="overlayText"><p id="topText">'.$username.'</p></div>';
+		//	$content .='<video  autobuffer="true" autoplay="true" preload="auto"    playsinline class="td-v2" id="vbbb"> ';
+		//	$content .='<source src="'.$webcam.'" type="video/mp4">';
+		//	$content .='</video>';
 			
 			$content .='</div>';
-			$content .='
+		/*	$content .='
 			<div class="bar_player">
 				<div class="progress_video">
 					<input type="range" min="0" max="100" value="0" class="range_progress">
@@ -272,7 +273,7 @@ class tadreblive_Public
                     </div>
                 </div>
             </div>
-			';
+			';*/
 			
 			}
 			return $content;
