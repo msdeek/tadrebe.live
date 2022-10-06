@@ -287,7 +287,7 @@ overflow: hidden;
    display: none;
 }
 
-.bottom-content {
+.content .bottom-content{
    display: none !important;
 }
 
