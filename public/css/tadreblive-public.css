@@ -287,4 +287,8 @@ overflow: hidden;
    display: none;
 }
 
+.bottom-content {
+   display: none !important;
+}
+
 
