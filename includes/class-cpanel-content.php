@@ -369,6 +369,7 @@ class CPanel_Content
         if ('bigbluebuttonbn' == $modname) {
 
             $bigbluebuttonbnid = get_post_meta($topic_id, 'module_instance', true);
+            echo $bigbluebuttonbnid;
 
             $method = 'GET';
             $body = array(
