@@ -369,7 +369,7 @@ class CPanel_Content
         if ('bigbluebuttonbn' == $modname) {
 
             $bigbluebuttonbnid = get_post_meta($topic_id, 'module_instance', true);
-            echo $bigbluebuttonbnid;
+            
 
             $method = 'GET';
             $body = array(
@@ -380,7 +380,7 @@ class CPanel_Content
             );
             $content = new CPanel_Services;
             $meeting_content = $content->register_moodle_services($baseurl, $method, $body);
-
+            echo  $meeting_content;
             $meetingid = $meeting_content->meetingid;
             $opentime = $meeting_content->openingtime;
             $opentime = gmdate('l Y-m-d H:i:s', $opentime);
