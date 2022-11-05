@@ -369,7 +369,6 @@ class CPanel_Content
         if ('bigbluebuttonbn' == $modname) {
 
             $bigbluebuttonbnid = get_post_meta($topic_id, 'module_instance', true);
-            
 
             $method = 'GET';
             $body = array(
@@ -380,6 +379,9 @@ class CPanel_Content
             );
             $content = new CPanel_Services;
             $meeting_content = $content->register_moodle_services($baseurl, $method, $body);
+            $pcurrent_user = wp_get_current_user();
+			$user_id = $pcurrent_user->ID;
+            echo $user_id ;
             var_dump(  $meeting_content);
             $meetingid = $meeting_content->meetingid;
             $opentime = $meeting_content->openingtime;
