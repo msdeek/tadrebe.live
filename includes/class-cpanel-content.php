@@ -382,7 +382,7 @@ class CPanel_Content
             $pcurrent_user = wp_get_current_user();
 			$user_id = $pcurrent_user->ID;
           
-            var_dump(  $meeting_content);
+           // var_dump(  $meeting_content);
             $meetingid = $meeting_content->meetingid;
             $opentime = $meeting_content->openingtime;
             $opentime = gmdate('l Y-m-d H:i:s', $opentime);
