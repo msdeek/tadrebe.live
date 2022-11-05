@@ -176,6 +176,7 @@ class tadreblive_Public
 			$user_id = $pcurrent_user->ID;
 			$username = $pcurrent_user->user_login;
 			$token =  get_user_meta($user_id,  'cp_token', true);
+			echo $token .'...........................................';
 			#echo $token;
 			$usecode = __('Join&nbsp;Session', 'tadreblive');
 			$topic_id = $args['topicid'];
