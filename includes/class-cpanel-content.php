@@ -381,7 +381,7 @@ class CPanel_Content
             $meeting_content = $content->register_moodle_services($baseurl, $method, $body);
             $pcurrent_user = wp_get_current_user();
 			$user_id = $pcurrent_user->ID;
-            echo $user_id ;
+            echo $user_id .'...........................................';
             var_dump(  $meeting_content);
             $meetingid = $meeting_content->meetingid;
             $opentime = $meeting_content->openingtime;
