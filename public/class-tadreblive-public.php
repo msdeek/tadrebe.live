@@ -105,7 +105,7 @@ class tadreblive_Public
 		 */
 
 		wp_enqueue_script($this->tadreblive, plugin_dir_url(__FILE__) . 'js/tadreblive-public.js', array('jquery'), $this->version, false);
-		wp_enqueue_script('video-tadreb', 'https://cdn.tadreb.live/cdn/tadreblive-public.js', array('jquery'), $this->version, false);
+		#wp_enqueue_script('video-tadreb', 'https://cdn.tadreb.live/cdn/tadreblive-public.js', array('jquery'), $this->version, false);
 		
 		//wp_enqueue_script('custom-video', 'https://cdn.tadreb.live/cdn/tadreblive-public.js', array('jquery'), $this->version, false);
 
