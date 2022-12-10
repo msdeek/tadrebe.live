@@ -3,9 +3,7 @@
  * included in this file.
  */
 
- .td-video-wrapper-top{
-   position: relative;
- }
+
  .td-video{
     width: 100%;
  }
@@ -13,14 +11,12 @@
     position: relative;
     direction: ltr !important; 
   
-background: rgb(0, 0, 0);
-overflow: hidden;
-    width: 100%;
  }
  .td-v1{
     position: absolute;
     width : 100% ;
     height: -webkit-fill-available;
+    z-index: 1;
  }
 
  .td-v2{
@@ -29,7 +25,7 @@ overflow: hidden;
     width: 20%;
     padding-top: 34%;
     border-radius: 5px;
-    z-index: 2;
+    z-index: 1;
   
  }
  .td-user{
@@ -64,7 +60,7 @@ overflow: hidden;
    }
 
    .td-video-wrapper:hover .bar_player{
-      /*bottom: 0px;*/
+      bottom: 0px;
       }
       
       .progress_video{
@@ -83,7 +79,7 @@ overflow: hidden;
       justify-content: space-between;
       background:hsl(0, 70%, 44%);
       direction: ltr !important; 
-      bottom: 0px;
+ 
       }
       
       .side_right{
@@ -292,7 +288,7 @@ overflow: hidden;
       }
 
 
-/* 
+
  @media only screen and (min-width: 601px) {
     .td-v2{
         padding-top: 37%;
@@ -302,11 +298,11 @@ overflow: hidden;
     .td-v2{
         padding-top: 35%;
     }
-} */
-.ld-in-focus-mode .learndash-wrapper .learndash_content_wrap{
-   max-width: unset !important;
 }
-.learndash-wrapper .learndash_content_wrap .ld-content-actions{
+/* .ld-in-focus-mode .learndash-wrapper .learndash_content_wrap{
+   max-width: unset !important;
+} */
+/* .learndash-wrapper .learndash_content_wrap .ld-content-actions{
    display: none;
 }
 
@@ -322,5 +318,5 @@ div.bb-lms-header .bb-position{
 
 .learndash_content_wrap .ld-progress{
    display: none !important;
-}
+} */
 

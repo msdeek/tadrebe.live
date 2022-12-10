@@ -98,7 +98,7 @@
 		const timeHover = document.querySelector('.time_hover')
 		const speedrate = document.getElementById('speedrate')
 
-
+		if (speedrate){
 		speedrate.addEventListener( 'click', ()=>{
 			
 			if(speedrate.innerHTML=='1x'){
@@ -123,6 +123,7 @@
 				speedrate.innerHTML = '1x'
 			}
 		})
+	}
 
 		myvideo.addEventListener('timeupdate', ()=>{
 			const  VP = (myvideo.currentTime / myvideo.duration) * 100
