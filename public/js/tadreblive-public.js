@@ -319,67 +319,67 @@
     // }
 	})
 });
-	$(document).ready(function () {
-		$(document)
-		var myvideoa = document.getElementById("va");
-		var myaudiob = document.getElementById("vb");
+	// $(document).ready(function () {
+	// 	$(document)
+	// 	var myvideoa = document.getElementById("va");
+	// 	var myaudiob = document.getElementById("vb");
 		
 		
 
-		myvideoa.addEventListener( 'play', () => {
-			myaudiob.play();
-			//setTimeout(checkStarted, 500);
-		});
+	// 	myvideoa.addEventListener( 'play', () => {
+	// 		myaudiob.play();
+	// 		//setTimeout(checkStarted, 500);
+	// 	});
 
-		myvideoa.addEventListener( 'canplay', () => {
-			myaudiob.play();
-			//setTimeout(checkStarted, 500);
-		});
+	// 	myvideoa.addEventListener( 'canplay', () => {
+	// 		myaudiob.play();
+	// 		//setTimeout(checkStarted, 500);
+	// 	});
 
-		myvideoa.addEventListener( 'pause', () => {
-			myaudiob.pause();
-		});
-		myvideoa.addEventListener( 'seeking', () => {
-			myvideoa.play();
-			myaudiob.play();
-			myaudiob.currentTime = myvideoa.currentTime - 1;
+	// 	myvideoa.addEventListener( 'pause', () => {
+	// 		myaudiob.pause();
+	// 	});
+	// 	myvideoa.addEventListener( 'seeking', () => {
+	// 		myvideoa.play();
+	// 		myaudiob.play();
+	// 		myaudiob.currentTime = myvideoa.currentTime - 1;
 			
-		});
+	// 	});
 
 
-		/*myvideo.onplay  = function() { 
-			myaudio.play();  
-			if(change_time_state){
-				myaudio.currentTime = myvideo.currentTime;
-				change_time_state = false;
-			}
-		}
-		myvideo.onpause = function() { myaudio.pause();
-			myaudio.pause();
-        	change_time_state = true; 
-		}
-		myvideo.ontimeupdate = function() { 
-			myaudio.currentTime = myvideo.currentTime - 2 ;
-			change_time_state = false;
-		}*/
+	// 	/*myvideo.onplay  = function() { 
+	// 		myaudio.play();  
+	// 		if(change_time_state){
+	// 			myaudio.currentTime = myvideo.currentTime;
+	// 			change_time_state = false;
+	// 		}
+	// 	}
+	// 	myvideo.onpause = function() { myaudio.pause();
+	// 		myaudio.pause();
+    //     	change_time_state = true; 
+	// 	}
+	// 	myvideo.ontimeupdate = function() { 
+	// 		myaudio.currentTime = myvideo.currentTime - 2 ;
+	// 		change_time_state = false;
+	// 	}*/
 
 
-		//myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime}
-		//var vcurrentTime = myvideo.currentTime + seconds ;
-		/*if(os !== 'iOS') {
+	// 	//myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime}
+	// 	//var vcurrentTime = myvideo.currentTime + seconds ;
+	// 	/*if(os !== 'iOS') {
 			
 			
-			myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime}
-		} else {
-			myvideo.autoplay = true;
-			myvideo.onplay = (event) => {
-				myaudio.play();
-			}
-			myvideo.onpause = (event) => {
-				myaudio.puse();
-			}
+	// 		myvideo.ontimeupdate = function() { myaudio.currentTime = myvideo.currentTime}
+	// 	} else {
+	// 		myvideo.autoplay = true;
+	// 		myvideo.onplay = (event) => {
+	// 			myaudio.play();
+	// 		}
+	// 		myvideo.onpause = (event) => {
+	// 			myaudio.puse();
+	// 		}
 
-		}**/
+	// 	}**/
 			
-	  });
+	//   });
 })( jQuery );

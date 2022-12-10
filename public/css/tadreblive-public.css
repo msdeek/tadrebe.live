@@ -3,7 +3,9 @@
  * included in this file.
  */
 
- 
+ .td-video-wrapper-top{
+   position: relative;
+ }
  .td-video{
     width: 100%;
  }
