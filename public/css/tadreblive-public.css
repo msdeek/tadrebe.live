@@ -288,6 +288,8 @@ overflow: hidden;
 
       }
 
+
+
  @media only screen and (min-width: 601px) {
     .td-v2{
         padding-top: 37%;
@@ -306,5 +308,14 @@ overflow: hidden;
 .bottom-content{
    display: none !important;
 }
+.learndash-wrapper .bb-ld-info-bar .ld-breadcrumbs{
+   display: none !important;
+}
+div.bb-lms-header .bb-position{
+   display: none !important;
+}
 
+.learndash_content_wrap .ld-progress{
+   display: none !important;
+}
 
