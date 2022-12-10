@@ -22,7 +22,7 @@ overflow: hidden;
 
  .td-v2{
     position: -webkit-inherit;
-    position: inherit;
+    position: relative;
     width: 20%;
     padding-top: 34%;
     border-radius: 5px;
@@ -51,7 +51,7 @@ overflow: hidden;
   }
 
  .bar_player{
-   background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+   background: linear-gradient(to top, hsl(0, 70%, 44%), rgba(0, 0, 0, 0));
    position: inherit;
    direction: ltr !important; 
    width: 100%;
@@ -78,7 +78,7 @@ overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background:#bd2222;
+      background:hsl(0, 70%, 44%);
       direction: ltr !important; 
       }
       
@@ -271,7 +271,21 @@ overflow: hidden;
       cursor: pointer;
       }
       Footer
-      
+
+      .speedlist{
+         position: relative;
+         width: 40px;
+         height: 40px;
+         cursor: pointer;
+      }
+
+      #speedrate{
+        
+         background: none;
+         border: none;
+
+      }
+
  @media only screen and (min-width: 601px) {
     .td-v2{
         padding-top: 37%;

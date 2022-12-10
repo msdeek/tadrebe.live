@@ -96,6 +96,33 @@
 		const current = document.querySelector('.current')
 		const duration = document.querySelector('.duration')
 		const timeHover = document.querySelector('.time_hover')
+		const speedrate = document.getElementById('speedrate')
+
+
+		speedrate.addEventListener( 'click', ()=>{
+			
+			if(speedrate.innerHTML=='1x'){
+				myvideo.playbackRate = 1.5;
+				myaudio.playbackRate = 1.5;
+				speedrate.innerHTML = '1.5x'
+			}else if (speedrate.innerHTML=='1.5x'){
+				myvideo.playbackRate = 1.75;
+				myaudio.playbackRate = 1.75;
+				speedrate.innerHTML = '1.75x'
+			}else if (speedrate.innerHTML=='1.75x'){
+				myvideo.playbackRate = 2.0;
+				myaudio.playbackRate = 2.0;
+				speedrate.innerHTML = '2.0x'
+			}else if (speedrate.innerHTML=='2.0x'){
+				myvideo.playbackRate = 0.5;
+				myaudio.playbackRate = 0.5;
+				speedrate.innerHTML = '0.5x'
+			}else if (speedrate.innerHTML=='0.5x'){
+				myvideo.playbackRate = 1;
+				myaudio.playbackRate = 1;
+				speedrate.innerHTML = '1x'
+			}
+		})
 
 		myvideo.addEventListener('timeupdate', ()=>{
 			const  VP = (myvideo.currentTime / myvideo.duration) * 100
@@ -232,16 +259,26 @@
 
 	})
 
-	rangeVolume.addEventListener('click', ()=>{
-		let isMute = rangeVolume.getAttribute('data-mute')
-		if(isMute === 'true'){
-			rangeVolume.setAttribute('data-mute', 'false')
+	rangeVolume.addEventListener('input', ()=>{
+		let range = rangeVolume.value
+		myaudio.volume = range
+		if (range < 0.01){		
+			volume.classList.remove('active')
+			halfVolume.classList.remove('active')
+			mute.classList.add('active')
+			myaudio.setAttribute('muted', '')
+			myaudio.volume = rangeVolume.value
+		}else if(range < 0.05){
+			volume.classList.remove('active')
+			halfVolume.classList.add('active')
+			mute.classList.remove('active')
+		}else{
 			volume.classList.add('active')
 			halfVolume.classList.remove('active')
 			mute.classList.remove('active')
-			myaudio.setAttribute('muted', '')
-			myaudio.volume = rangeVolume.value
 		}
+
+		
 	})
 
 	zoomIn.addEventListener('click', ()=>{
@@ -262,20 +299,24 @@
 	})
 
 	zoomOut.addEventListener('click', ()=>{
-		let zoom = fullscreen.getAttribute('data-zoom')
-    if(zoom === 'true'){
-        zoomIn.classList.add('active')
+		zoomIn.classList.add('active')
         zoomOut.classList.remove('active')
         fullscreen.setAttribute('data-zoom', 'false')
-        document.exitFullscreen()
-    } else{
-        zoomIn.classList.remove('active')
-        zoomOut.classList.add('active')
-        wrapperPlayer.requestFullscreen()
-		wrapperPlayer.documentElement.webkitRequestFullscreen()
-		myvideo.webkitEnterFullscreen()
-        fullscreen.setAttribute('data-zoom', 'true')
-    }
+		document.exitFullscreen()
+
+	// 	let zoom = fullscreen.getAttribute('data-zoom')
+    // if(zoom === 'true'){
+    //     zoomIn.classList.remove('active')
+    //     zoomOut.classList.add('active')
+    //     fullscreen.setAttribute('data-zoom', 'true')
+    // } else{
+    //     zoomIn.classList.remove('active')
+    //     zoomOut.classList.add('active')
+    //     wrapperPlayer.requestFullscreen()
+	// 	wrapperPlayer.documentElement.webkitRequestFullscreen()
+	// 	myvideo.webkitEnterFullscreen()
+    //     fullscreen.setAttribute('data-zoom', 'true')
+    // }
 	})
 });
 	$(document).ready(function () {
