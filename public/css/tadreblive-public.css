@@ -20,6 +20,7 @@ overflow: hidden;
  .td-v1{
     position: absolute;
     width : 100% ;
+    height: -webkit-fill-available;
  }
 
  .td-v2{
@@ -63,7 +64,7 @@ overflow: hidden;
    }
 
    .td-video-wrapper:hover .bar_player{
-      bottom: 0px;
+      /*bottom: 0px;*/
       }
       
       .progress_video{
@@ -82,6 +83,7 @@ overflow: hidden;
       justify-content: space-between;
       background:hsl(0, 70%, 44%);
       direction: ltr !important; 
+      bottom: 0px;
       }
       
       .side_right{
@@ -262,6 +264,7 @@ overflow: hidden;
       width:60%;
       height: var(--heightbar);
       outline: none;
+      padding: unset !important;
       }
       
       .range_volume::-webkit-slider-thumb {
@@ -289,7 +292,7 @@ overflow: hidden;
       }
 
 
-
+/* 
  @media only screen and (min-width: 601px) {
     .td-v2{
         padding-top: 37%;
@@ -299,8 +302,10 @@ overflow: hidden;
     .td-v2{
         padding-top: 35%;
     }
+} */
+.ld-in-focus-mode .learndash-wrapper .learndash_content_wrap{
+   max-width: unset !important;
 }
-
 .learndash-wrapper .learndash_content_wrap .ld-content-actions{
    display: none;
 }

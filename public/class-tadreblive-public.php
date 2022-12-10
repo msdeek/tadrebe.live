@@ -77,8 +77,8 @@ class tadreblive_Public
 
 		wp_enqueue_style($this->tadreblive, plugin_dir_url(__FILE__) . 'css/tadreblive-public.css', array(), $this->version, 'all');
 		#wp_enqueue_style('video-tadreb', 'https://cdn.tadreb.live/cdn/tadreblive-public.css', array(), $this->version, 'all');
-		wp_enqueue_style('rm1', 'https://rm1.tadreb.live/playback/presentation/2.3/styles/video-js.min.css', array(), $this->version, 'all');
-		wp_enqueue_style('rm2', 'https://rm1.tadreb.live/playback/presentation/2.3/static/css/main.2f07368a.chunk.css', array(), $this->version, 'all');
+		#wp_enqueue_style('rm1', 'https://rm1.tadreb.live/playback/presentation/2.3/styles/video-js.min.css', array(), $this->version, 'all');
+		#wp_enqueue_style('rm2', 'https://rm1.tadreb.live/playback/presentation/2.3/static/css/main.2f07368a.chunk.css', array(), $this->version, 'all');
 
 	
 	}
@@ -108,8 +108,8 @@ class tadreblive_Public
 
 		wp_enqueue_script($this->tadreblive, plugin_dir_url(__FILE__) . 'js/tadreblive-public.js', array('jquery'), $this->version, false);
 		#wp_enqueue_script('video-tadreb', 'https://cdn.tadreb.live/cdn/tadreblive-public.js', array('jquery'), $this->version, false);
-		wp_enqueue_script('rm1', 'https://rm1.tadreb.live/playback/presentation/2.3/static/js/2.1239bfb1.chunk.js', array('jquery'), $this->version, false);
-		wp_enqueue_script('rm2', 'https://rm1.tadreb.live/playback/presentation/2.3/static/js/main.ba3a7ecb.chunk.js', array('jquery'), $this->version, false);
+		#wp_enqueue_script('rm1', 'https://rm1.tadreb.live/playback/presentation/2.3/static/js/2.1239bfb1.chunk.js', array('jquery'), $this->version, false);
+		#wp_enqueue_script('rm2', 'https://rm1.tadreb.live/playback/presentation/2.3/static/js/main.ba3a7ecb.chunk.js', array('jquery'), $this->version, false);
 		
 		//wp_enqueue_script('custom-video', 'https://cdn.tadreb.live/cdn/tadreblive-public.js', array('jquery'), $this->version, false);
 
